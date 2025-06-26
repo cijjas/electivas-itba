@@ -35,54 +35,79 @@ opinar sobre electivas de forma anonima.
 - Node.js ≥ 18
 - pnpm ≥ 9
 
-## Instalación y ejecución local
+## Ejecutar en desarrollo (modo contribución)
 
-### Configurar Vercel KV
+Si querés clonar el repo, probarlo localmente o contribuir, seguí estos pasos:
 
-Para habilitar el almacenamiento de votos y comentarios, es necesario configurar
-Vercel KV:
+1. Asegurate de tener Docker instalado. Podés instalarlo desde
+   [https://www.docker.com](https://www.docker.com).
+2. Levantá una instancia local de Redis con el siguiente comando:
 
-1. Crear un proyecto en [vercel.com](https://vercel.com)
-2. Añadir un almacén KV desde el panel de control
-3. Obtener las variables `VERCEL_KV_REST_API_URL` y `VERCEL_KV_REST_API_TOKEN`
-4. Guardar estas variables en un archivo `.env.local` en la raíz del proyecto
+   ```bash
+   docker run --name redis-dev -p 6379:6379 -d redis
+   ```
 
-### Ejecutar la aplicación
+3. Copiá el archivo de variables de entorno de ejemplo:
 
-```bash
-git clone https://github.com/cijjas/electivas-itba.git
-cd electivas-itba
-pnpm install
-cp .env.example .env.local   # Completar con tus credenciales de Vercel KV
-pnpm dev
-```
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Este archivo ya contiene una configuración lista para desarrollo, como:
+
+   ```env
+   REDIS_URL=redis://localhost:6379
+
+   NEXT_PUBLIC_COMMENT_MAX_LENGTH=3000
+   NEXT_PUBLIC_COMMENT_MIN_LENGTH=10
+   NEXT_PUBLIC_REPORT_THRESHOLD=5
+   ```
+
+4. Instalá las dependencias y levantá el servidor de desarrollo:
+
+   ```bash
+   pnpm install
+   pnpm dev
+   ```
+
+Una vez hecho esto, la app estará disponible en `http://localhost:3000`.
 
 ## Variables de entorno
 
-| Variable                   | Descripción                    |
-| -------------------------- | ------------------------------ |
-| `VERCEL_KV_REST_API_URL`   | URL del endpoint de Vercel KV  |
-| `VERCEL_KV_REST_API_TOKEN` | Token de acceso para Vercel KV |
+Las siguientes variables ya están preconfiguradas en `.env.example`. Solo
+deberías cambiarlas si querés modificar los valores por defecto:
+
+| Variable                         | Descripción                                                |
+| -------------------------------- | ---------------------------------------------------------- |
+| `REDIS_URL`                      | URL de conexión a Redis (por defecto local)                |
+| `NEXT_PUBLIC_COMMENT_MAX_LENGTH` | Máximo de caracteres por comentario (default: 3000)        |
+| `NEXT_PUBLIC_COMMENT_MIN_LENGTH` | Mínimo de caracteres por comentario (default: 10)          |
+| `NEXT_PUBLIC_REPORT_THRESHOLD`   | Umbral de reportes para ocultar un comentario (default: 5) |
 
 ## Comandos útiles
 
-| Comando           | Descripción                              |
-| ----------------- | ---------------------------------------- |
-| `pnpm dev`        | Inicia el servidor de desarrollo local   |
-| `pnpm build`      | Compila la aplicación para producción    |
-| `pnpm start`      | Ejecuta la aplicación en modo producción |
-| `pnpm lint`       | Ejecuta ESLint para análisis de código   |
-| `pnpm type-check` | Verifica tipos con TypeScript            |
-| `pnpm test`       | Ejecuta tests unitarios con Vitest       |
-| `pnpm e2e`        | Ejecuta tests end-to-end con Playwright  |
+| Comando      | Descripción                              |
+| ------------ | ---------------------------------------- |
+| `pnpm dev`   | Inicia el servidor de desarrollo local   |
+| `pnpm build` | Compila la aplicación para producción    |
+| `pnpm start` | Ejecuta la aplicación en modo producción |
+| `pnpm lint`  | Ejecuta ESLint para análisis de código   |
 
 ## Cómo contribuir
 
-1. Realizá un fork del repositorio y creá una branch nueva.
-2. Ejecutá `pnpm lint`, `pnpm type-check` y `pnpm test` antes de hacer commit.
-3. Usá mensajes de commit con formato convencional (ejemplo:
-   `feat(vote): permitir deshacer dislike`).
-4. Abrí un pull request. Asegurate que todas las pruebas pasen antes de hacer
+1. Hacé un fork del repositorio y creá una nueva branch descriptiva.
+2. Antes de commitear, ejecutá:
+   ```bash
+   pnpm lint
+   pnpm build
+   ```
+   Esto asegura que el código siga el estilo del proyecto y que la app compile
+   correctamente.
+3. Usá mensajes de commit con formato convencional. Ejemplo:
+   ```
+   feat(vote): permitir deshacer dislike
+   ```
+4. Abrí un pull request. Asegurate de que todas las pruebas pasen antes de hacer
    merge.
 
 ## Licencia

@@ -140,7 +140,7 @@ export async function reportComment(subjectId: string, commentId: string) {
   if (cookieStore.get(reportCookie)) {
     return {
       success: false,
-      message: 'You have already reported this comment.',
+      message: 'Ya reportaste este comentario una vez.',
     };
   }
 
@@ -158,7 +158,7 @@ export async function reportComment(subjectId: string, commentId: string) {
     success: true,
     hidden,
     message: hidden
-      ? 'Comment hidden after community reports.'
-      : 'Report received. Thank you!',
+      ? 'El comentario fue eliminado despues de varios reports.'
+      : 'Reportado, gracias.',
   };
 }

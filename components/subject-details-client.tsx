@@ -15,8 +15,27 @@ import { ThumbsUp, ThumbsDown, Send } from 'lucide-react';
 import { handleVote, handleAddComment, handleLikeComment } from '@/app/actions';
 import CommentCard from './comment-card';
 import { toast } from 'sonner';
-import { COMMENT_MAX_LENGTH } from '@/lib/constants';
+import { COMMENT_MAX_LENGTH, COMMENT_MIN_LENGTH } from '@/lib/constants';
 import { reportComment } from '@/app/actions';
+
+/** Discriminated‐union for the optimistic reducer */
+type OptimisticAction =
+  | {
+      action: 'add';
+      payload: Comment & { userLiked: boolean };
+    }
+  | {
+      action: 'like';
+      payload: {
+        commentId: string;
+        newLikeCount: number;
+        newUserLiked: boolean;
+      };
+    }
+  | {
+      action: 'hide';
+      payload: { commentId: string };
+    };
 
 // ---------------------------------------------
 // Types
@@ -62,26 +81,27 @@ export default function SubjectDetailsClient({
       ...c,
       userLiked: likedCommentsStatus.find(lc => lc.id === c.id)?.liked || false,
     })),
-    (
-      state,
-      { action, payload }: { action: 'add' | 'like' | 'hide'; payload: any },
-    ) => {
-      if (action === 'add') return [...state, payload];
-      if (action === 'like')
-        return state.map(c =>
-          c.id === payload.commentId
-            ? {
-                ...c,
-                likes: payload.newLikeCount,
-                userLiked: payload.newUserLiked,
-              }
-            : c,
-        );
-      if (action === 'hide')
-        return state.map(c =>
-          c.id === payload.commentId ? { ...c, hidden: true } : c,
-        );
-      return state;
+    (state, { action, payload }: OptimisticAction) => {
+      switch (action) {
+        case 'add':
+          return [...state, payload];
+        case 'like':
+          return state.map(c =>
+            c.id === payload.commentId
+              ? {
+                  ...c,
+                  likes: payload.newLikeCount,
+                  userLiked: payload.newUserLiked,
+                }
+              : c,
+          );
+        case 'hide':
+          return state.map(c =>
+            c.id === payload.commentId ? { ...c, hidden: true } : c,
+          );
+        default:
+          return state;
+      }
     },
   );
 
@@ -107,9 +127,11 @@ export default function SubjectDetailsClient({
       // Undo vote
       if (previousVote === voteType) {
         setOptimisticVote(undefined);
-        previousVote === 'like'
-          ? setOptimisticLikes(Math.max(0, optimisticLikes - 1))
-          : setOptimisticDislikes(Math.max(0, optimisticDislikes - 1));
+        if (previousVote === 'like') {
+          setOptimisticLikes(Math.max(0, optimisticLikes - 1));
+        } else {
+          setOptimisticDislikes(Math.max(0, optimisticDislikes - 1));
+        }
       } else {
         // Apply new vote & revert previous if needed
         setOptimisticVote(voteType);
@@ -121,9 +143,11 @@ export default function SubjectDetailsClient({
           setOptimisticDislikes(Math.max(0, optimisticDislikes - 1));
           setOptimisticLikes(optimisticLikes + 1);
         } else {
-          voteType === 'like'
-            ? setOptimisticLikes(optimisticLikes + 1)
-            : setOptimisticDislikes(optimisticDislikes + 1);
+          if (voteType === 'like') {
+            setOptimisticLikes(optimisticLikes + 1);
+          } else {
+            setOptimisticDislikes(optimisticDislikes + 1);
+          }
         }
       }
 
@@ -150,9 +174,11 @@ export default function SubjectDetailsClient({
       setOptimisticComments({ action: 'add', payload: newCommentOptimistic });
 
       const result = await handleAddComment(subject.subject_id, formData);
-      result.success
-        ? toast.success(result.message)
-        : toast.error(result.error);
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(result.error);
+      }
     });
   };
 
@@ -235,6 +261,7 @@ export default function SubjectDetailsClient({
             name='commentText'
             placeholder='Dejá tu opinión sobre la materia...'
             maxLength={COMMENT_MAX_LENGTH}
+            minLength={COMMENT_MIN_LENGTH}
             rows={3}
             disabled={isPending}
           />

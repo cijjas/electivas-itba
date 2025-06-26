@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { getElectivas } from '@/lib/data';
 import { getSubjectLikes, getSubjectComments } from '@/lib/kv';
@@ -9,15 +10,15 @@ import {
   CardDescription,
   CardFooter,
 } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress'; // Import the Progress component
 import {
-  List,
   ThumbsUp,
   ThumbsDown,
   MessageCircle,
   Github, // Import the GitHub icon
   BookOpen, // A better icon for the title
 } from 'lucide-react';
+
+// app/page.tsx
 
 export default async function HomePage() {
   const electivas = await getElectivas();
@@ -28,9 +29,7 @@ export default async function HomePage() {
       const { likes, dislikes } = await getSubjectLikes(subject.subject_id);
       const comments = await getSubjectComments(subject.subject_id);
 
-      // --- NEW: Calculate Approval Percentage ---
       const totalVotes = likes + dislikes;
-      // Handle division by zero case
       const aprobacion =
         totalVotes > 0 ? Math.round((likes / totalVotes) * 100) : 0;
 
@@ -38,9 +37,9 @@ export default async function HomePage() {
         ...subject,
         likes,
         dislikes,
-        commentCount: comments.length,
-        aprobacion, // Add the new property
-        totalVotes, // Useful for conditional rendering
+        commentCount: comments.filter(comment => !comment.hidden).length,
+        aprobacion,
+        totalVotes,
       };
     }),
   );
@@ -50,7 +49,7 @@ export default async function HomePage() {
       <div className='container mx-auto px-4 py-12'>
         <header className='text-center mb-12 border-b pb-8'>
           <h1 className='text-5xl font-extrabold tracking-tight text-gray-800 flex items-center justify-center'>
-            Rating de Electivas ITBA
+            Rating Electivas ITBA
           </h1>
           <p className='text-lg text-muted-foreground mt-2 max-w-2xl mx-auto'>
             Opiná sobre las electivas para que todos elijamos mejor.
@@ -79,6 +78,9 @@ export default async function HomePage() {
               sus profesores.
             </div>
           </div>
+          <p className='mt-4 text-sm text-gray-500 italic'>
+            Las electivas que se ven son las que están disponibles actualmente
+          </p>
         </header>
 
         {electivasWithStats.length === 0 ? (
@@ -146,7 +148,7 @@ export default async function HomePage() {
                       </div>
                       <div className='text-sm text-right text-gray-500'>
                         {subject.totalVotes > 0
-                          ? `${subject.aprobacion}%`
+                          ? `${subject.aprobacion}% recomendada`
                           : 'N/A'}
                       </div>
                     </CardFooter>
@@ -165,12 +167,8 @@ export default async function HomePage() {
             className='inline-flex items-center text-muted-foreground hover:text-blue-600 transition-colors'
           >
             <Github className='h-5 w-5 mr-2' />
-            Si te interesa contribuir, fijate el GitHub
+            Aca podés ver el código fuente y contribuir
           </a>
-          <p className='text-xs text-gray-400 mt-2'>
-            Tu ayuda va a ser siempre bienvenida. Si encontrás algún error o
-            tenés una idea, abrí un issue.
-          </p>
         </footer>
       </div>
     </div>

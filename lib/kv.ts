@@ -1,6 +1,10 @@
-import { kv } from '@vercel/kv';
+import { kv } from '@/lib/kv-wrapper';
 import type { Comment } from './types';
 import { REPORT_THRESHOLD } from '@/lib/constants';
+
+// -------------------------------
+// Logic
+// -------------------------------
 
 // Returns the current number of likes and dislikes for a given subject.
 export async function getSubjectLikes(
@@ -55,6 +59,9 @@ export async function addSubjectComment(
   const comments = await getSubjectComments(subjectId);
   const updatedComments = [...comments, comment];
   await kv.set(`subject:${subjectId}:comments`, updatedComments);
+  if (!comment.hidden) {
+    await kv.incr(`subject:${subjectId}:visibleCommentCount`);
+  }
   return updatedComments;
 }
 
@@ -119,6 +126,7 @@ export async function reportSubjectComment(
     const comments = await getSubjectComments(subjectId);
     const idx = comments.findIndex(c => c.id === commentId);
     if (idx !== -1 && !comments[idx].hidden) {
+      await kv.decr(`subject:${subjectId}:visibleCommentCount`);
       comments[idx].hidden = true;
       await kv.set(`subject:${subjectId}:comments`, comments);
     }
@@ -126,4 +134,13 @@ export async function reportSubjectComment(
   }
 
   return false; // not yet hidden
+}
+
+// Retrieves the count of visible (non-hidden) comments for a given subject.
+export async function getVisibleCommentCount(
+  subjectId: string,
+): Promise<number> {
+  return (
+    (await kv.get<number>(`subject:${subjectId}:visibleCommentCount`)) || 0
+  );
 }
