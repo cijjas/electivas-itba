@@ -7,9 +7,10 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'ITBA Rating Electivas',
+  description:
+    'Aplicación para calificar y comentar las materias electivas del ITBA',
+  generator: 'Next.js',
 };
 
 export default function RootLayout({

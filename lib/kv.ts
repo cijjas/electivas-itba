@@ -1,7 +1,8 @@
 import { kv } from '@vercel/kv';
 import type { Comment } from './types';
+import { REPORT_THRESHOLD } from '@/lib/constants';
 
-// Subject likes/dislikes
+// Returns the current number of likes and dislikes for a given subject.
 export async function getSubjectLikes(
   subjectId: string,
 ): Promise<{ likes: number; dislikes: number }> {
@@ -10,31 +11,35 @@ export async function getSubjectLikes(
   return { likes, dislikes };
 }
 
+// Increments the like count for a subject by 1.
 export async function incrementSubjectLikes(
   subjectId: string,
 ): Promise<number> {
   return kv.incr(`subject:${subjectId}:likes`);
 }
 
+// Decrements the like count for a subject by 1.
 export async function decrementSubjectLikes(
   subjectId: string,
 ): Promise<number> {
   return kv.decr(`subject:${subjectId}:likes`);
 }
 
+// Increments the dislike count for a subject by 1.
 export async function incrementSubjectDislikes(
   subjectId: string,
 ): Promise<number> {
   return kv.incr(`subject:${subjectId}:dislikes`);
 }
 
+// Decrements the dislike count for a subject by 1.
 export async function decrementSubjectDislikes(
   subjectId: string,
 ): Promise<number> {
   return kv.decr(`subject:${subjectId}:dislikes`);
 }
 
-// Subject comments
+// Retrieves the list of comments for a given subject. Returns an empty array if none exist.
 export async function getSubjectComments(
   subjectId: string,
 ): Promise<Comment[]> {
@@ -42,6 +47,7 @@ export async function getSubjectComments(
   return comments || [];
 }
 
+// Adds a new comment to the list for a subject and stores the updated list.
 export async function addSubjectComment(
   subjectId: string,
   comment: Comment,
@@ -52,6 +58,7 @@ export async function addSubjectComment(
   return updatedComments;
 }
 
+// Increases the like count of a specific comment for a subject. Returns the updated comment list.
 export async function likeSubjectComment(
   subjectId: string,
   commentId: string,
@@ -68,6 +75,7 @@ export async function likeSubjectComment(
   return comments;
 }
 
+// Decreases the like count of a specific comment for a subject (if greater than 0). Returns the updated list.
 export async function unlikeSubjectComment(
   subjectId: string,
   commentId: string,
@@ -87,8 +95,35 @@ export async function unlikeSubjectComment(
   return comments;
 }
 
-// Reset subject votes
+// Resets both the like and dislike counters for a subject to 0.
 export async function resetSubjectVotes(subjectId: string): Promise<void> {
   await kv.set(`subject:${subjectId}:likes`, 0);
   await kv.set(`subject:${subjectId}:dislikes`, 0);
+}
+
+/**
+ * Increments report counter for a comment.
+ * When threshold is hit, sets `hidden = true` inside the comment list.
+ * Returns `true` if the comment became hidden by this call.
+ */
+export async function reportSubjectComment(
+  subjectId: string,
+  commentId: string,
+): Promise<boolean> {
+  // 1) Count reports in a standalone key
+  const reportKey = `comment:${commentId}:reports`;
+  const reports = await kv.incr(reportKey);
+
+  // 2) If threshold reached, mark comment.hidden = true
+  if (reports >= REPORT_THRESHOLD) {
+    const comments = await getSubjectComments(subjectId);
+    const idx = comments.findIndex(c => c.id === commentId);
+    if (idx !== -1 && !comments[idx].hidden) {
+      comments[idx].hidden = true;
+      await kv.set(`subject:${subjectId}:comments`, comments);
+    }
+    return true; // hidden
+  }
+
+  return false; // not yet hidden
 }

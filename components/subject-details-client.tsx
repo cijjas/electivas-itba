@@ -11,13 +11,21 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { ThumbsUp, ThumbsDown, MessageCircle, Send } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, Send } from 'lucide-react';
 import { handleVote, handleAddComment, handleLikeComment } from '@/app/actions';
 import CommentCard from './comment-card';
 import { toast } from 'sonner';
+import { COMMENT_MAX_LENGTH } from '@/lib/constants';
+import { reportComment } from '@/app/actions';
 
+// ---------------------------------------------
+// Types
+// ---------------------------------------------
 type VoteStatus = 'like' | 'dislike' | undefined;
-type LikedCommentStatus = { id: string; liked: boolean };
+interface LikedCommentStatus {
+  id: string;
+  liked: boolean;
+}
 
 interface SubjectDetailsClientProps {
   subject: Subject;
@@ -28,6 +36,9 @@ interface SubjectDetailsClientProps {
   likedCommentsStatus: LikedCommentStatus[];
 }
 
+// ---------------------------------------------
+// Component
+// ---------------------------------------------
 export default function SubjectDetailsClient({
   subject,
   initialLikes,
@@ -39,6 +50,9 @@ export default function SubjectDetailsClient({
   const [isPending, startTransition] = useTransition();
   const formRef = useRef<HTMLFormElement>(null);
 
+  // -------------------------------------------
+  // Optimistic State
+  // -------------------------------------------
   const [optimisticLikes, setOptimisticLikes] = useOptimistic(initialLikes);
   const [optimisticDislikes, setOptimisticDislikes] =
     useOptimistic(initialDislikes);
@@ -48,11 +62,12 @@ export default function SubjectDetailsClient({
       ...c,
       userLiked: likedCommentsStatus.find(lc => lc.id === c.id)?.liked || false,
     })),
-    (state, { action, payload }: { action: 'add' | 'like'; payload: any }) => {
-      if (action === 'add') {
-        return [...state, payload];
-      }
-      if (action === 'like') {
+    (
+      state,
+      { action, payload }: { action: 'add' | 'like' | 'hide'; payload: any },
+    ) => {
+      if (action === 'add') return [...state, payload];
+      if (action === 'like')
         return state.map(c =>
           c.id === payload.commentId
             ? {
@@ -62,25 +77,41 @@ export default function SubjectDetailsClient({
               }
             : c,
         );
-      }
+      if (action === 'hide')
+        return state.map(c =>
+          c.id === payload.commentId ? { ...c, hidden: true } : c,
+        );
       return state;
     },
   );
+
+  // -------------------------------------------
+  // Handlers
+  // -------------------------------------------
+
+  const onReportComment = async (commentId: string) => {
+    startTransition(async () => {
+      const result = await reportComment(subject.subject_id, commentId);
+      toast.success(result.message);
+
+      if (result.hidden) {
+        setOptimisticComments({ action: 'hide', payload: { commentId } });
+      }
+    });
+  };
 
   const onVote = (voteType: 'like' | 'dislike') => {
     startTransition(async () => {
       const previousVote = optimisticVote;
 
+      // Undo vote
       if (previousVote === voteType) {
-        // Undo vote
         setOptimisticVote(undefined);
-        if (voteType === 'like') {
-          setOptimisticLikes(Math.max(0, optimisticLikes - 1));
-        } else {
-          setOptimisticDislikes(Math.max(0, optimisticDislikes - 1));
-        }
+        previousVote === 'like'
+          ? setOptimisticLikes(Math.max(0, optimisticLikes - 1))
+          : setOptimisticDislikes(Math.max(0, optimisticDislikes - 1));
       } else {
-        // Set new vote
+        // Apply new vote & revert previous if needed
         setOptimisticVote(voteType);
 
         if (previousVote === 'like') {
@@ -90,11 +121,9 @@ export default function SubjectDetailsClient({
           setOptimisticDislikes(Math.max(0, optimisticDislikes - 1));
           setOptimisticLikes(optimisticLikes + 1);
         } else {
-          if (voteType === 'like') {
-            setOptimisticLikes(optimisticLikes + 1);
-          } else {
-            setOptimisticDislikes(optimisticDislikes + 1);
-          }
+          voteType === 'like'
+            ? setOptimisticLikes(optimisticLikes + 1)
+            : setOptimisticDislikes(optimisticDislikes + 1);
         }
       }
 
@@ -104,26 +133,26 @@ export default function SubjectDetailsClient({
   };
 
   const onAddComment = async (formData: FormData) => {
-    const commentText = formData.get('commentText') as string;
-    if (!commentText || commentText.trim() === '') {
-      toast.error('El comentario no puede estar vacío.');
-      return;
-    }
+    const commentText = (formData.get('commentText') as string)?.trim();
+    if (!commentText) return toast.error('El comentario no puede estar vacío.');
 
     startTransition(async () => {
-      const newCommentOptimistic = {
+      const newCommentOptimistic: Comment & { userLiked: boolean } = {
         id: `optimistic_${Date.now()}`,
         subjectId: subject.subject_id,
-        text: commentText.trim(),
+        text: commentText,
         timestamp: Date.now(),
         likes: 0,
         userLiked: false,
       };
+
       formRef.current?.reset();
       setOptimisticComments({ action: 'add', payload: newCommentOptimistic });
+
       const result = await handleAddComment(subject.subject_id, formData);
-      if (result.success) toast.success(result.message);
-      else if (result.error) toast.error(result.error);
+      result.success
+        ? toast.success(result.message)
+        : toast.error(result.error);
     });
   };
 
@@ -145,16 +174,25 @@ export default function SubjectDetailsClient({
     });
   };
 
+  // -------------------------------------------
+  // Render
+  // -------------------------------------------
   return (
-    <Card className='w-full max-w-2xl mx-auto'>
-      <CardHeader>
-        <CardTitle className='text-3xl'>{subject.name}</CardTitle>
+    <Card className='w-full max-w-3xl mx-auto rounded-lg overflow-hidden border-[1px] border-black shadow-md'>
+      {/* Header */}
+      <CardHeader className='bg-gray-100/80'>
+        <CardTitle className='text-2xl font-semibold tracking-tight'>
+          {subject.name}
+        </CardTitle>
         <CardDescription>
-          ID: {subject.subject_id} | Créditos: {subject.credits}
+          Código: {subject.subject_id} • Créditos: {subject.credits}
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className='flex items-center space-x-4 mb-6'>
+
+      {/* Content */}
+      <CardContent className='space-y-8'>
+        {/* Like / Dislike */}
+        <div className='flex items-center pt-4 space-x-4 mb-6'>
           <Button
             onClick={() => onVote('like')}
             disabled={isPending}
@@ -184,53 +222,48 @@ export default function SubjectDetailsClient({
           </Button>
         </div>
 
-        <div className='mt-8'>
-          <h3 className='text-xl font-semibold mb-4 flex items-center'>
-            <MessageCircle className='mr-2 h-6 w-6' /> Comentarios (
-            {optimisticComments.length})
-          </h3>
-          <form
-            onSubmit={e => {
-              e.preventDefault();
-              onAddComment(new FormData(e.currentTarget));
-            }}
-            ref={formRef}
-            className='mb-6'
-          >
-            <Textarea
-              name='commentText'
-              placeholder='Escribe tu comentario...'
-              className='mb-2'
-              rows={3}
-              disabled={isPending}
-            />
-            <Button
-              type='submit'
-              disabled={isPending}
-              className='w-full sm:w-auto'
-            >
-              <Send className='mr-2 h-4 w-4' /> Enviar Comentario
+        {/* Comment Form */}
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            onAddComment(new FormData(e.currentTarget));
+          }}
+          ref={formRef}
+          className='space-y-2'
+        >
+          <Textarea
+            name='commentText'
+            placeholder='Dejá tu opinión sobre la materia...'
+            maxLength={COMMENT_MAX_LENGTH}
+            rows={3}
+            disabled={isPending}
+          />
+          <div className='flex justify-end'>
+            <Button type='submit' disabled={isPending} className='gap-1'>
+              <Send className='h-4 w-4' /> Enviar
             </Button>
-          </form>
-
-          <div className='space-y-4'>
-            {optimisticComments.length > 0 ? (
-              optimisticComments
-                .slice()
-                .sort((a, b) => b.timestamp - a.timestamp)
-                .map(comment => (
-                  <CommentCard
-                    key={comment.id}
-                    comment={comment}
-                    onLikeComment={onLikeComment}
-                  />
-                ))
-            ) : (
-              <p className='text-sm text-muted-foreground'>
-                Aún no hay comentarios. ¡Sé el primero en comentar!
-              </p>
-            )}
           </div>
+        </form>
+
+        {/* Comment List */}
+        <div className='space-y-4'>
+          {optimisticComments.filter(c => !c.hidden).length > 0 ? (
+            optimisticComments
+              .filter(c => !c.hidden)
+              .sort((a, b) => b.timestamp - a.timestamp)
+              .map(comment => (
+                <CommentCard
+                  key={comment.id}
+                  comment={comment}
+                  onLikeComment={onLikeComment}
+                  onReportComment={onReportComment}
+                />
+              ))
+          ) : (
+            <p className='text-center text-sm text-muted-foreground'>
+              Aún no hay comentarios. ¡Sé el primero en comentar!
+            </p>
+          )}
         </div>
       </CardContent>
     </Card>

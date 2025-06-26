@@ -51,8 +51,8 @@ export default async function SubjectPage(props: SubjectPageProps) {
     <div className='container mx-auto p-4'>
       <Link href='/' legacyBehavior>
         <Button
-          variant='outline'
-          className='mb-6 bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+          variant='ghost'
+          className='mb-6  text-muted-foreground hover:bg-accent hover:text-accent-foreground'
         >
           <ArrowLeft className='mr-2 h-4 w-4' /> Volver a Electivas
         </Button>

@@ -1,5 +1,4 @@
 'use server';
-
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { v4 as uuidv4 } from 'uuid';
@@ -11,11 +10,19 @@ import {
   addSubjectComment,
   likeSubjectComment,
   unlikeSubjectComment,
+  resetSubjectVotes,
 } from '@/lib/kv';
 import type { Comment } from '@/lib/types';
+import { COMMENT_MAX_LENGTH } from '@/lib/constants';
+import { reportSubjectComment } from '@/lib/kv';
 
 const ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60;
 
+/**
+ * Handles voting (like or dislike) for a subject.
+ * Stores the user's vote in a cookie to prevent duplicate voting.
+ * Also supports undoing or switching votes.
+ */
 export async function handleVote(
   subjectId: string,
   voteType: 'like' | 'dislike',
@@ -34,7 +41,7 @@ export async function handleVote(
     cookieStore.delete(voteCookieName);
     message = 'Voto eliminado.';
   } else if (existingVote) {
-    // User is changing their vote
+    // User is switching their vote from like to dislike or vice versa
     if (voteType === 'like') {
       await incrementSubjectLikes(subjectId);
       await decrementSubjectDislikes(subjectId);
@@ -50,7 +57,7 @@ export async function handleVote(
       voteType === 'like' ? 'Me gusta' : 'No me gusta'
     }'.`;
   } else {
-    // New vote
+    // First time voting
     if (voteType === 'like') await incrementSubjectLikes(subjectId);
     else await incrementSubjectDislikes(subjectId);
 
@@ -61,15 +68,27 @@ export async function handleVote(
     message = '¡Gracias por tu voto!';
   }
 
+  // Trigger cache revalidation for the subject page and homepage
   revalidatePath(`/electivas/${subjectId}`);
   revalidatePath('/');
   return { success: true, message };
 }
 
+/**
+ * Handles adding a comment to a subject.
+ * Validates that the comment is not empty and adds it to storage.
+ */
 export async function handleAddComment(subjectId: string, formData: FormData) {
-  const commentText = formData.get('commentText') as string;
-  if (!commentText || commentText.trim() === '') {
-    return { error: 'El comentario no puede estar vacío.' };
+  const commentText = (formData.get('commentText') as string)?.trim() ?? '';
+
+  if (commentText.length === 0) {
+    return { error: 'Comment cannot be empty.' };
+  }
+
+  if (commentText.length > COMMENT_MAX_LENGTH) {
+    return {
+      error: `Comment cannot exceed ${COMMENT_MAX_LENGTH} characters.`,
+    };
   }
 
   const newComment: Comment = {
@@ -107,9 +126,39 @@ export async function handleLikeComment(subjectId: string, commentId: string) {
   }
 }
 
-import { resetSubjectVotes } from '@/lib/kv';
-
 export async function resetVotes(subjectId: string) {
   await resetSubjectVotes(subjectId);
   return { success: true, message: 'Votos reiniciados.' };
+}
+
+/** User reports a comment as spam/abuse. Cookie prevents duplicates. */
+export async function reportComment(subjectId: string, commentId: string) {
+  const cookieStore = await cookies();
+  const reportCookie = `reported_comment_${commentId}`;
+
+  // Disallow multiple reports from the same browser
+  if (cookieStore.get(reportCookie)) {
+    return {
+      success: false,
+      message: 'You have already reported this comment.',
+    };
+  }
+
+  const hidden = await reportSubjectComment(subjectId, commentId);
+
+  cookieStore.set(reportCookie, 'true', {
+    maxAge: ONE_YEAR_IN_SECONDS,
+    path: '/',
+  });
+
+  // refresh caches so UI picks up hidden flag or report counts
+  revalidatePath(`/electivas/${subjectId}`);
+
+  return {
+    success: true,
+    hidden,
+    message: hidden
+      ? 'Comment hidden after community reports.'
+      : 'Report received. Thank you!',
+  };
 }

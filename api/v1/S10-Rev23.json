@@ -1,0 +1,3919 @@
+{
+  "Ciclo Básico": {
+    "1": {
+      "1": [
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "94.24",
+          "name": "Metodología del Aprendizaje",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "004R",
+                  "building": "SDR",
+                  "time_from": "09:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "004R",
+                  "building": "SDR",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                }
+              ]
+            },
+            {
+              "name": "DF",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "201T",
+                  "building": "SDT",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "31.08",
+          "name": "Sistemas de Representación",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "11:00:00",
+                  "time_to": "14:00:00"
+                }
+              ]
+            },
+            {
+              "name": "A1",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "102T",
+                  "building": "SDT",
+                  "time_from": "11:00:00",
+                  "time_to": "14:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "11:00:00",
+                  "time_to": "14:00:00"
+                }
+              ]
+            },
+            {
+              "name": "D",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "14:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            },
+            {
+              "name": "D1",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "102T",
+                  "building": "SDT",
+                  "time_from": "14:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            },
+            {
+              "name": "E",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "11:00:00",
+                  "time_to": "14:00:00"
+                }
+              ]
+            },
+            {
+              "name": "F",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            },
+            {
+              "name": "G",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "102T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            },
+            {
+              "name": "H",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            },
+            {
+              "name": "K",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "14:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            },
+            {
+              "name": "K1",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "102T",
+                  "building": "SDT",
+                  "time_from": "14:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "14:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S1",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "102T",
+                  "building": "SDT",
+                  "time_from": "14:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "93.58",
+          "name": "Álgebra",
+          "credits": 9,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "102R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "004R",
+                  "building": "SDR",
+                  "time_from": "11:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "004R",
+                  "building": "SDR",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "005R",
+                  "building": "SDR",
+                  "time_from": "11:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "104R",
+                  "building": "SDR",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "104R",
+                  "building": "SDR",
+                  "time_from": "13:00:00",
+                  "time_to": "15:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "104R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "17:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "005R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "005R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "104R",
+                  "building": "SDR",
+                  "time_from": "15:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "93.26",
+          "name": "Análisis Matemático I",
+          "credits": 6,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "102R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "102R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "104R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "002R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "005R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "102T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.03",
+          "name": "Introducción a la Informática",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "102R",
+                  "building": "SDR",
+                  "time_from": "17:00:00",
+                  "time_to": "20:00:00"
+                },
+                {
+                  "day": "FRIDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "17:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "2": [
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "93.59",
+          "name": "Matemática Discreta",
+          "credits": 6,
+          "dependencies": ["93.58"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "11:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S2",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "93.28",
+          "name": "Análisis Matemático II",
+          "credits": 6,
+          "dependencies": ["93.58", "93.26"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "002T",
+                  "building": "SDT",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "003R",
+                  "building": "SDR",
+                  "time_from": "13:00:00",
+                  "time_to": "15:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "003R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "102R",
+                  "building": "SDR",
+                  "time_from": "13:00:00",
+                  "time_to": "15:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "93.41",
+          "name": "Física I",
+          "credits": 6,
+          "dependencies": ["93.26"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "D",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "E",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "F",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            },
+            {
+              "name": "G",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "13:00:00",
+                  "time_to": "15:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            },
+            {
+              "name": "H",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "K",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "13:00:00",
+                  "time_to": "15:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S1",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.31",
+          "name": "Programación Imperativa",
+          "credits": 9,
+          "dependencies": ["93.58", "72.03"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "003T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "004T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "201T",
+                  "building": "SDT",
+                  "time_from": "17:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "003T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "004T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S1",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "006R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "FRIDAY",
+                  "classroom": "007R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "2": {
+      "1": [
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "12.09",
+          "name": "Química",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "003T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "FRIDAY",
+                  "classroom": "004T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S1",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "201T",
+                  "building": "SDT",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "93.35",
+          "name": "Lógica Computacional",
+          "credits": 6,
+          "dependencies": ["93.58"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "101R",
+                  "building": "SDR",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "101R",
+                  "building": "SDR",
+                  "time_from": "09:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "005R",
+                  "building": "SDR",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "004R",
+                  "building": "SDR",
+                  "time_from": "09:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "102R",
+                  "building": "SDR",
+                  "time_from": "15:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "102R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "101R",
+                  "building": "SDR",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "101R",
+                  "building": "SDR",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "93.43",
+          "name": "Física III",
+          "credits": 6,
+          "dependencies": ["93.28", "93.41"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "13:00:00",
+                  "time_to": "15:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "15:00:00",
+                  "time_to": "17:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "003R",
+                  "building": "SDR",
+                  "time_from": "18:00:00",
+                  "time_to": "20:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "D",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "002R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "19:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            },
+            {
+              "name": "E",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "19:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "003R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            },
+            {
+              "name": "F",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "001R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "G",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "19:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "15:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            },
+            {
+              "name": "MNP",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "001R",
+                  "building": "SDR",
+                  "time_from": "17:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            },
+            {
+              "name": "Q",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "002R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "19:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "001R",
+                  "building": "SDR",
+                  "time_from": "17:00:00",
+                  "time_to": "19:00:00"
+                },
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "13:00:00",
+                  "time_to": "15:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.32",
+          "name": "Diseño y Procesamiento de Documentos XML",
+          "credits": 3,
+          "dependencies": ["72.31"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.33",
+          "name": "Programación Orientada a Objetos",
+          "credits": 6,
+          "dependencies": ["72.31"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "102T",
+                  "building": "SDT",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "201T",
+                  "building": "SDT",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S2",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "006R",
+                  "building": "SDR",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "007R",
+                  "building": "SDR",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "2": [
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "93.24",
+          "name": "Probabilidad y Estadística",
+          "credits": 6,
+          "dependencies": ["93.28"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "002R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "D",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "003R",
+                  "building": "SDR",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónica",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "E",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "F",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "001R",
+                  "building": "SDR",
+                  "time_from": "13:00:00",
+                  "time_to": "15:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "13:00:00",
+                  "time_to": "15:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "93.42",
+          "name": "Física II",
+          "credits": 6,
+          "dependencies": ["93.28"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "002R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "101R",
+                  "building": "SDR",
+                  "time_from": "13:00:00",
+                  "time_to": "15:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "D",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "E",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "F",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "002R",
+                  "building": "SDR",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "G",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "002R",
+                  "building": "SDR",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                }
+              ]
+            },
+            {
+              "name": "H",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "K",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "MN",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "12:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Laboratorio",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "101R",
+                  "building": "SDR",
+                  "time_from": "11:00:00",
+                  "time_to": "13:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.08",
+          "name": "Arquitectura de Computadoras",
+          "credits": 6,
+          "dependencies": ["72.31"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "101T",
+                  "building": "SDT",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "102T",
+                  "building": "SDT",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "201T",
+                  "building": "SDT",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S2",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "003T",
+                  "building": "SDT",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "004T",
+                  "building": "SDT",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "201T",
+                  "building": "SDT",
+                  "time_from": "10:00:00",
+                  "time_to": "13:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.34",
+          "name": "Estructura de Datos y Algoritmos",
+          "credits": 6,
+          "dependencies": ["93.59", "72.33"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "11:00:00",
+                  "time_to": "14:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "301F",
+                  "building": "SDF",
+                  "time_from": "09:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "302F",
+                  "building": "SDF",
+                  "time_from": "09:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "3": {
+      "1": [
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.11",
+          "name": "Sistemas Operativos",
+          "credits": 6,
+          "dependencies": ["72.08", "72.34"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "17:00:00",
+                  "time_to": "20:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.35",
+          "name": "Ingenieria de Software I",
+          "credits": 6,
+          "dependencies": ["72.33"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "301F",
+                  "building": "SDF",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "302F",
+                  "building": "SDF",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.36",
+          "name": "Interacción Hombre-Computadora (HCI)",
+          "credits": 6,
+          "dependencies": ["72.33", "72.32"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.37",
+          "name": "Base de Datos I",
+          "credits": 6,
+          "dependencies": ["72.34", "93.35"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "006R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "007R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "2": [
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "94.21",
+          "name": "Formación General I",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "20:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "102R",
+                  "building": "SDR",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "20:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "20:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "102R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            },
+            {
+              "name": "D",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "20:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            },
+            {
+              "name": "E",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "002R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "20:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            },
+            {
+              "name": "F",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "20:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "201R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            },
+            {
+              "name": "G",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "20:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "007R",
+                  "building": "SDR",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "H",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "20:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "007R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "93.07",
+          "name": "Métodos Numéricos",
+          "credits": 3,
+          "dependencies": ["93.28"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "17:00:00",
+                  "time_to": "20:00:00"
+                }
+              ]
+            },
+            {
+              "name": "D",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.07",
+          "name": "Protocolos de Comunicación",
+          "credits": 6,
+          "dependencies": ["72.11"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                },
+                {
+                  "day": "FRIDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "202R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "203R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.38",
+          "name": "Proyecto de Aplicaciones Web",
+          "credits": 6,
+          "dependencies": ["72.11", "72.37", "72.36", "72.35"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "006R",
+                  "building": "SDR",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "007R",
+                  "building": "SDR",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Básico",
+          "subject_id": "72.39",
+          "name": "Autómatas, Teoría de Lenguajes y Compiladores",
+          "credits": 6,
+          "dependencies": ["72.34"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "006R",
+                  "building": "SDR",
+                  "time_from": "15:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "Ciclo Profesional": {
+    "4": {
+      "1": [
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "61.32",
+          "name": "Derecho para Ingenieros",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": 120,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "KS",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "402F",
+                  "building": "SDF",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "SK",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "401F",
+                  "building": "SDF",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "93.75",
+          "name": "Métodos Numéricos Avanzados",
+          "credits": 6,
+          "dependencies": ["93.07"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "15:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "61.23",
+          "name": "Economía para Ingenieros",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": 120,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "801F",
+                  "building": "SDF",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "503F",
+                  "building": "SDF",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "72.40",
+          "name": "Ingenieria del Software II",
+          "credits": 3,
+          "dependencies": ["72.35"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "302F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S2",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "502F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "72.41",
+          "name": "Base de Datos II",
+          "credits": 6,
+          "dependencies": ["72.37", "72.11"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "601F",
+                  "building": "SDF",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "72.42",
+          "name": "Programación de Objetos Distribuidos",
+          "credits": 3,
+          "dependencies": ["72.07", "72.37"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "601F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "2": [
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "72.25",
+          "name": "Simulación de Sistemas",
+          "credits": 6,
+          "dependencies": ["72.34", "93.07"],
+          "credits_required": 140,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "501F",
+                  "building": "SDF",
+                  "time_from": "10:00:00",
+                  "time_to": "13:00:00"
+                },
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "10:00:00",
+                  "time_to": "13:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "72.27",
+          "name": "Sistemas de Inteligencia Artificial",
+          "credits": 6,
+          "dependencies": ["93.24", "72.34"],
+          "credits_required": 120,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "09:00:00",
+                  "time_to": "12:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "15:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "72.43",
+          "name": "Gestión de Proyectos Informáticos",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "002R",
+                  "building": "SDR",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "72.44",
+          "name": "Criptografía y Seguridad",
+          "credits": 6,
+          "dependencies": ["72.07"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "201R",
+                  "building": "SDR",
+                  "time_from": "15:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "5": {
+      "1": [
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "72.45",
+          "name": "Proyecto Final  (Anual)",
+          "credits": 12,
+          "dependencies": [],
+          "credits_required": 160,
+          "course_start": "2025-02-24",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual Asincrónico",
+                  "building": "Online",
+                  "time_from": "15:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "15:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "12.83",
+          "name": "Seguridad Ocupacional y Ambiental",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": 140,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "801F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "401F",
+                  "building": "SDF",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "501F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "72.20",
+          "name": "Redes de Información",
+          "credits": 6,
+          "dependencies": ["72.07"],
+          "credits_required": 171,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "104R",
+                  "building": "SDR",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "2": [
+        {
+          "section": "Ciclo Profesional",
+          "subject_id": "94.23",
+          "name": "Formación General III",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": 168,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "AB",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "15:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "801F",
+                  "building": "SDF",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "15:00:00"
+                },
+                {
+                  "day": "THURSDAY",
+                  "classroom": "503F",
+                  "building": "SDF",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C2",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "15:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "601F",
+                  "building": "SDF",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "D",
+              "schedule": [
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "15:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "602F",
+                  "building": "SDF",
+                  "time_from": "14:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "KMP",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "402F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "SUNDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "15:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "Electivas": {
+    "0": {
+      "0": [
+        {
+          "section": "Electivas",
+          "subject_id": "81.57",
+          "name": "Arquitectura de soluciones digitales",
+          "credits": 3,
+          "dependencies": ["72.07", "72.37", "72.35"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "501F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "202F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "82.18",
+          "name": "Procesamiento del Lenguaje Natural",
+          "credits": 3,
+          "dependencies": ["93.07"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "504F",
+                  "building": "SDF",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "94.62",
+          "name": "Ética en los Negocios",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "603F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "94.64",
+          "name": "Prácticas Expositivas",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": 120,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "SATURDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "20:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "501F",
+                  "building": "SDF",
+                  "time_from": "08:00:00",
+                  "time_to": "10:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "SATURDAY",
+                  "classroom": "Virtual asincrónico",
+                  "building": "Online",
+                  "time_from": "20:00:00",
+                  "time_to": "21:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "603F",
+                  "building": "SDF",
+                  "time_from": "10:00:00",
+                  "time_to": "12:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "82.08",
+          "name": "Cloud Computing",
+          "credits": 3,
+          "dependencies": ["72.32"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "AWS",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "701F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "94.42",
+          "name": "Comunicación Estratégica",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "501F",
+                  "building": "SDF",
+                  "time_from": "17:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "61.50",
+          "name": "Finanzas de la Empresa",
+          "credits": 3,
+          "dependencies": ["61.23"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "301F",
+                  "building": "SDF",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                },
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "302F",
+                  "building": "SDF",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "10.07",
+          "name": "Creatividad",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": 96,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "601F",
+                  "building": "SDF",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "601F",
+                  "building": "SDF",
+                  "time_from": "10:00:00",
+                  "time_to": "13:00:00"
+                }
+              ]
+            },
+            {
+              "name": "C",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "601F",
+                  "building": "SDF",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "10.09",
+          "name": "Formación para Emprendedores",
+          "credits": 3,
+          "dependencies": [],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "902F",
+                  "building": "SDF",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            },
+            {
+              "name": "B",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "903F",
+                  "building": "SDF",
+                  "time_from": "16:00:00",
+                  "time_to": "19:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "16.50",
+          "name": "Introducción a la Bioinformática",
+          "credits": 3,
+          "dependencies": ["72.37"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "16.57",
+          "name": "Robótica Bioinspirada",
+          "credits": 3,
+          "dependencies": ["72.08"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "001T",
+                  "building": "SDT",
+                  "time_from": "13:00:00",
+                  "time_to": "16:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "22.48",
+          "name": "Procesamiento de Imágenes",
+          "credits": 3,
+          "dependencies": ["93.75"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "K",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "23.15",
+          "name": "Realidad Virtual",
+          "credits": 3,
+          "dependencies": ["93.58", "72.34"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "K",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "15:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "25.04",
+          "name": "Computación Cuántica",
+          "credits": 6,
+          "dependencies": [],
+          "credits_required": 144,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "15:00:00",
+                  "time_to": "18:00:00"
+                },
+                {
+                  "day": "TUESDAY",
+                  "classroom": "803F",
+                  "building": "SDF",
+                  "time_from": "15:00:00",
+                  "time_to": "18:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "72.58",
+          "name": "Computación Gráfica",
+          "credits": 3,
+          "dependencies": ["72.34"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "604F",
+                  "building": "SDF",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "72.60",
+          "name": "Programación Funcional",
+          "credits": 3,
+          "dependencies": ["72.34"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "103R",
+                  "building": "SDR",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "72.74",
+          "name": "Visualización de Información",
+          "credits": 3,
+          "dependencies": ["72.31"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "901F",
+                  "building": "SDF",
+                  "time_from": "10:00:00",
+                  "time_to": "13:00:00"
+                }
+              ]
+            },
+            {
+              "name": "S2",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "902F",
+                  "building": "SDF",
+                  "time_from": "08:00:00",
+                  "time_to": "11:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "72.75",
+          "name": "Aprendizaje Automático (Machine Learning)",
+          "credits": 3,
+          "dependencies": ["93.75", "72.34", "93.24"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "72.80",
+          "name": "Big Data",
+          "credits": 3,
+          "dependencies": ["72.41"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "18:30:00",
+                  "time_to": "21:30:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "72.90",
+          "name": "Internet de las Cosas (IoT)",
+          "credits": 3,
+          "dependencies": ["93.07", "93.43"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "904F",
+                  "building": "SDF",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "72.92",
+          "name": "El Paradigma NoSQL - Bases de Datos de Grafos",
+          "credits": 3,
+          "dependencies": ["72.41"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "14:00:00",
+                  "time_to": "17:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "72.97",
+          "name": "Introducción a la Programación de Videojuegos",
+          "credits": 3,
+          "dependencies": ["72.34"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "73.21",
+          "name": "Desarrollo de Aplicaciones Móviles Multiplataforma",
+          "credits": 3,
+          "dependencies": ["72.38"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "73.22",
+          "name": "Fundamentos de DevOps",
+          "credits": 3,
+          "dependencies": ["72.35"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "THURSDAY",
+                  "classroom": "201F",
+                  "building": "SDF",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "73.30",
+          "name": "Desarrollo profesional de software: del código al producto",
+          "credits": 3,
+          "dependencies": ["72.35"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "001T",
+                  "building": "SDT",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "73.40",
+          "name": "ARQUITECTURA DE MICROSERVICIOS",
+          "credits": 3,
+          "dependencies": ["72.41", "72.40"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "A",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "17:00:00",
+                  "time_to": "20:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "73.64",
+          "name": "Temas Avanzados en Deep Learning",
+          "credits": 2,
+          "dependencies": ["72.27"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "FRIDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "73.84",
+          "name": "Ciencia de Datos Aplicada",
+          "credits": 3,
+          "dependencies": ["72.27"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "WEDNESDAY",
+                  "classroom": "Virtual sincrónico",
+                  "building": "Online",
+                  "time_from": "19:00:00",
+                  "time_to": "22:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "73.89",
+          "name": "Introducción a Blockchain y Criptomonedas",
+          "credits": 3,
+          "dependencies": ["72.44"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "TUESDAY",
+                  "classroom": "704F",
+                  "building": "SDF",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "section": "Electivas",
+          "subject_id": "73.98",
+          "name": "Desarrollo Integral de Videojuegos",
+          "credits": 3,
+          "dependencies": ["72.97"],
+          "credits_required": null,
+          "course_start": "2025-07-21",
+          "course_end": "2025-12-31",
+          "commissions": [
+            {
+              "name": "S",
+              "schedule": [
+                {
+                  "day": "MONDAY",
+                  "classroom": "Virtual sincrónica",
+                  "building": "Online",
+                  "time_from": "18:00:00",
+                  "time_to": "21:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
