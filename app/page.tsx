@@ -15,7 +15,6 @@ import {
   ThumbsDown,
   MessageCircle,
   Github, // Import the GitHub icon
-  BookOpen, // A better icon for the title
 } from 'lucide-react';
 
 // app/page.tsx

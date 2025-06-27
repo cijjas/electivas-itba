@@ -1,6 +1,6 @@
 'use client';
 
-import { useTransition, useOptimistic, useRef } from 'react';
+import { useTransition, useOptimistic, useRef, useState } from 'react';
 import type { Subject, Comment } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,8 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { ThumbsUp, ThumbsDown, Send } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, Send, ShieldAlert } from 'lucide-react';
 import {
   handleVote,
   handleAddComment,
@@ -25,7 +24,10 @@ import { COMMENT_MAX_LENGTH, COMMENT_MIN_LENGTH } from '@/lib/constants';
 
 /** Discriminated‐union for the optimistic reducer */
 type OptimisticAction =
-  | { action: 'add'; payload: Comment & { userLiked: boolean } }
+  | {
+      action: 'add';
+      payload: Comment & { userLiked: boolean };
+    }
   | {
       action: 'like';
       payload: {
@@ -34,7 +36,10 @@ type OptimisticAction =
         newUserLiked: boolean;
       };
     }
-  | { action: 'hide'; payload: { commentId: string } };
+  | {
+      action: 'hide';
+      payload: { commentId: string };
+    };
 
 // ---------------------------------------------
 // Types
@@ -49,7 +54,7 @@ interface SubjectDetailsClientProps {
   subject: Subject;
   initialLikes: number;
   initialDislikes: number;
-  initialComments: Comment[]; // now includes hidden ones
+  initialComments: Comment[];
   userVoteStatus: VoteStatus;
   likedCommentsStatus: LikedCommentStatus[];
 }
@@ -67,6 +72,7 @@ export default function SubjectDetailsClient({
 }: SubjectDetailsClientProps) {
   const [isPending, startTransition] = useTransition();
   const formRef = useRef<HTMLFormElement>(null);
+  const [activeTab, setActiveTab] = useState<'visible' | 'reported'>('visible');
 
   // -------------------------------------------
   // Optimistic State
@@ -104,52 +110,49 @@ export default function SubjectDetailsClient({
     },
   );
 
-  // -------------------------------------------
-  // Helper slices
-  // -------------------------------------------
-  const visibleComments = optimisticComments.filter(c => !c.hidden);
-  const reportedComments = optimisticComments.filter(c => c.hidden);
+  // Filter comments based on the active tab
+  const visibleComments = optimisticComments
+    .filter(c => !c.hidden)
+    .sort((a, b) => b.timestamp - a.timestamp);
+
+  const reportedComments = optimisticComments
+    .filter(c => c.hidden)
+    .sort((a, b) => b.timestamp - a.timestamp);
 
   // -------------------------------------------
   // Handlers
   // -------------------------------------------
+
   const onReportComment = async (commentId: string) => {
     startTransition(async () => {
+      // Optimistically move the comment to the reported section
+      setOptimisticComments({ action: 'hide', payload: { commentId } });
       const result = await reportComment(subject.subject_id, commentId);
       toast.success(result.message);
-      if (result.hidden) {
-        setOptimisticComments({ action: 'hide', payload: { commentId } });
-      }
     });
   };
 
   const onVote = (voteType: 'like' | 'dislike') => {
     startTransition(async () => {
       const previousVote = optimisticVote;
-      // Undo vote
+
       if (previousVote === voteType) {
         setOptimisticVote(undefined);
-        if (previousVote === 'like') {
-          setOptimisticLikes(Math.max(0, optimisticLikes - 1));
-        } else {
-          setOptimisticDislikes(Math.max(0, optimisticDislikes - 1));
-        }
+        if (previousVote === 'like')
+          setOptimisticLikes(p => Math.max(0, p - 1));
+        else setOptimisticDislikes(p => Math.max(0, p - 1));
       } else {
-        // Apply new vote & revert previous if needed
         setOptimisticVote(voteType);
-
-        if (previousVote === 'like') {
-          setOptimisticLikes(Math.max(0, optimisticLikes - 1));
-          setOptimisticDislikes(optimisticDislikes + 1);
-        } else if (previousVote === 'dislike') {
-          setOptimisticDislikes(Math.max(0, optimisticDislikes - 1));
-          setOptimisticLikes(optimisticLikes + 1);
+        if (voteType === 'like') {
+          setOptimisticLikes(p => p + 1);
+          if (previousVote === 'dislike')
+            setOptimisticDislikes(p => Math.max(0, p - 1));
         } else {
-          if (voteType === 'like') setOptimisticLikes(optimisticLikes + 1);
-          else setOptimisticDislikes(optimisticDislikes + 1);
+          setOptimisticDislikes(p => p + 1);
+          if (previousVote === 'like')
+            setOptimisticLikes(p => Math.max(0, p - 1));
         }
       }
-
       const result = await handleVote(subject.subject_id, voteType);
       toast.success(result.message);
     });
@@ -167,14 +170,19 @@ export default function SubjectDetailsClient({
         timestamp: Date.now(),
         likes: 0,
         userLiked: false,
+        hidden: false,
       };
 
       formRef.current?.reset();
       setOptimisticComments({ action: 'add', payload: newCommentOptimistic });
 
       const result = await handleAddComment(subject.subject_id, formData);
-      if (result.success) toast.success(result.message);
-      else toast.error(result.error);
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(result.error);
+        // TODO: Revert optimistic update on failure
+      }
     });
   };
 
@@ -200,9 +208,9 @@ export default function SubjectDetailsClient({
   // Render
   // -------------------------------------------
   return (
-    <Card className='w-full max-w-3xl mx-auto rounded-lg overflow-hidden border border-black shadow-md'>
+    <Card className='w-full max-w-3xl mx-auto rounded-lg overflow-hidden border shadow-md'>
       {/* Header */}
-      <CardHeader className='bg-gray-100/80'>
+      <CardHeader className='bg-gray-50 dark:bg-gray-800/20'>
         <CardTitle className='text-2xl font-semibold tracking-tight'>
           {subject.name}
         </CardTitle>
@@ -212,19 +220,18 @@ export default function SubjectDetailsClient({
       </CardHeader>
 
       {/* Content */}
-      <CardContent className='space-y-8'>
+      <CardContent className='p-6 space-y-8'>
         {/* Like / Dislike */}
         <div className='flex items-center pt-4 space-x-4 mb-6'>
           <Button
             onClick={() => onVote('like')}
             disabled={isPending}
             variant='outline'
-            className={
-              'border hover:bg-green-50 hover:text-green-700 ' +
-              (optimisticVote === 'like'
-                ? 'border-green-600 text-green-600'
-                : 'border-gray-300 text-gray-500')
-            }
+            className={`transition-colors duration-200 flex-1 justify-center border hover:bg-green-50 hover:text-green-700 ${
+              optimisticVote === 'like'
+                ? 'border-green-600 bg-green-50 text-green-700'
+                : 'border-gray-300 text-gray-500'
+            }`}
           >
             <ThumbsUp className='mr-2 h-5 w-5' /> Me gusta ({optimisticLikes})
           </Button>
@@ -232,12 +239,11 @@ export default function SubjectDetailsClient({
             onClick={() => onVote('dislike')}
             disabled={isPending}
             variant='outline'
-            className={
-              'border hover:bg-red-50 hover:text-red-700 ' +
-              (optimisticVote === 'dislike'
-                ? 'border-red-600 text-red-600'
-                : 'border-gray-300 text-gray-500')
-            }
+            className={`transition-colors duration-200 flex-1 justify-center border hover:bg-red-50 hover:text-red-700 ${
+              optimisticVote === 'dislike'
+                ? 'border-red-600 bg-red-50 text-red-700'
+                : 'border-gray-300 text-gray-500'
+            }`}
           >
             <ThumbsDown className='mr-2 h-5 w-5' /> No me gusta (
             {optimisticDislikes})
@@ -260,6 +266,7 @@ export default function SubjectDetailsClient({
             minLength={COMMENT_MIN_LENGTH}
             rows={3}
             disabled={isPending}
+            className='focus-visible:ring-1 focus-visible:ring-ring'
           />
           <div className='flex justify-end'>
             <Button type='submit' disabled={isPending} className='gap-1'>
@@ -268,57 +275,71 @@ export default function SubjectDetailsClient({
           </div>
         </form>
 
-        {/* Comment Tabs */}
-        <Tabs defaultValue='visible' className='w-full'>
-          <TabsList className='grid grid-cols-2 w-full'>
-            <TabsTrigger value='visible'>
+        {/* Comment Section with Tabs */}
+        <div>
+          <div className='flex border-b mb-4'>
+            <Button
+              variant='ghost'
+              onClick={() => setActiveTab('visible')}
+              className={`rounded-b-none pb-2 ${
+                activeTab === 'visible'
+                  ? 'border-b-2 border-primary text-primary'
+                  : 'text-muted-foreground'
+              }`}
+            >
               Comentarios ({visibleComments.length})
-            </TabsTrigger>
-            <TabsTrigger value='reported'>
+            </Button>
+            <Button
+              variant='ghost'
+              onClick={() => setActiveTab('reported')}
+              className={`rounded-b-none pb-2 flex items-center gap-2 ${
+                activeTab === 'reported'
+                  ? 'border-b-2 border-destructive text-destructive'
+                  : 'text-muted-foreground'
+              }`}
+            >
+              <ShieldAlert className='h-4 w-4' />
               Reportados ({reportedComments.length})
-            </TabsTrigger>
-          </TabsList>
+            </Button>
+          </div>
 
-          {/* Visible comments */}
-          <TabsContent value='visible' className='space-y-4'>
-            {visibleComments.length ? (
-              visibleComments
-                .sort((a, b) => b.timestamp - a.timestamp)
-                .map(comment => (
+          {/* Conditional Rendering based on Tab */}
+          <div className='space-y-4'>
+            {activeTab === 'visible' &&
+              (visibleComments.length > 0 ? (
+                visibleComments.map(comment => (
                   <CommentCard
                     key={comment.id}
                     comment={comment}
                     onLikeComment={onLikeComment}
                     onReportComment={onReportComment}
+                    isReported={false}
                   />
                 ))
-            ) : (
-              <p className='text-center text-sm text-muted-foreground'>
-                Aún no hay comentarios. ¡Sé el primero en comentar!
-              </p>
-            )}
-          </TabsContent>
+              ) : (
+                <p className='text-center text-sm text-muted-foreground py-8'>
+                  Aún no hay comentarios. ¡Sé el primero en comentar!
+                </p>
+              ))}
 
-          {/* Reported comments */}
-          <TabsContent value='reported' className='space-y-4'>
-            {reportedComments.length ? (
-              reportedComments
-                .sort((a, b) => b.timestamp - a.timestamp)
-                .map(comment => (
+            {activeTab === 'reported' &&
+              (reportedComments.length > 0 ? (
+                reportedComments.map(comment => (
                   <CommentCard
                     key={comment.id}
                     comment={comment}
                     onLikeComment={onLikeComment}
-                    onReportComment={onReportComment}
+                    onReportComment={onReportComment} // This won't be called due to button logic
+                    isReported={true}
                   />
                 ))
-            ) : (
-              <p className='text-center text-sm text-muted-foreground'>
-                No hay comentarios reportados.
-              </p>
-            )}
-          </TabsContent>
-        </Tabs>
+              ) : (
+                <p className='text-center text-sm text-muted-foreground py-8'>
+                  No hay comentarios reportados.
+                </p>
+              ))}
+          </div>
+        </div>
       </CardContent>
     </Card>
   );

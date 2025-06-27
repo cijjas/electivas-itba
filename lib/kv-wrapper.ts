@@ -1,5 +1,3 @@
-// lib/kv-wrapper.ts
-
 import { kv as vercelKv } from '@vercel/kv';
 import Redis from 'ioredis';
 
@@ -13,19 +11,21 @@ const redisClient =
     : null;
 
 export const kv = {
+  /** Get and JSON-parse a value */
   async get<T>(key: string): Promise<T | null> {
     if (redisClient) {
       const val = await redisClient.get(key);
-      return val ? JSON.parse(val) : null;
+      return val ? (JSON.parse(val) as T) : null;
     }
     return vercelKv.get<T>(key);
   },
 
-  async set(key: string, value: any): Promise<void> {
+  /** Set a value (generic instead of `any`) */
+  async set<T>(key: string, value: T): Promise<void> {
     if (redisClient) {
       await redisClient.set(key, JSON.stringify(value));
     } else {
-      await vercelKv.set(key, value);
+      await vercelKv.set<T>(key, value);
     }
   },
 

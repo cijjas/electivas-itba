@@ -1,8 +1,12 @@
-# Calificación de Electivas del ITBA
+# Rating de Electivas del ITBA
 
 Aplicación web para puntuar y comentar materias electivas del ITBA, desarrollada
 con Next.js App Router, Tailwind CSS, shadcn/ui y Vercel KV para almacenamiento
 en la nube.
+
+# Feature requests o backlog
+
+-
 
 # Objetivo
 

@@ -34,15 +34,17 @@ export default async function SubjectPage(props: SubjectPageProps) {
   }
 
   const { likes, dislikes } = await getSubjectLikes(subjectId);
-  const comments = await getSubjectComments(subjectId); // keep hidden ones too
+  // Fetch all comments, including hidden/reported ones.
+  // The client will handle filtering.
+  const allComments = await getSubjectComments(subjectId);
 
-  // Read user's vote from cookies on the server
   const cookieStore = await cookies();
   const userVote = cookieStore.get(`voted_subject_${subjectId}`)?.value as
     | 'like'
     | 'dislike'
     | undefined;
-  const likedComments = comments.map(c => ({
+
+  const likedComments = allComments.map(c => ({
     id: c.id,
     liked: !!cookieStore.get(`voted_comment_${c.id}`)?.value,
   }));
@@ -52,7 +54,7 @@ export default async function SubjectPage(props: SubjectPageProps) {
       <Link href='/' legacyBehavior>
         <Button
           variant='ghost'
-          className='mb-6  text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+          className='mb-6 text-muted-foreground hover:bg-accent hover:text-accent-foreground'
         >
           <ArrowLeft className='mr-2 h-4 w-4' /> Volver a Electivas
         </Button>
@@ -61,7 +63,7 @@ export default async function SubjectPage(props: SubjectPageProps) {
         subject={subject}
         initialLikes={likes}
         initialDislikes={dislikes}
-        initialComments={comments}
+        initialComments={allComments}
         userVoteStatus={userVote}
         likedCommentsStatus={likedComments}
       />
