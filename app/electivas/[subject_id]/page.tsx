@@ -34,7 +34,7 @@ export default async function SubjectPage(props: SubjectPageProps) {
   }
 
   const { likes, dislikes } = await getSubjectLikes(subjectId);
-  const comments = await getSubjectComments(subjectId);
+  const comments = await getSubjectComments(subjectId); // keep hidden ones too
 
   // Read user's vote from cookies on the server
   const cookieStore = await cookies();

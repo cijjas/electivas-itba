@@ -22,11 +22,7 @@ export default function CommentCard({
 
   const formattedDate = new Date(comment.timestamp).toLocaleDateString(
     'es-AR',
-    {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    },
+    { day: 'numeric', month: 'short', year: 'numeric' },
   );
 
   const handleLike = () => {
@@ -40,12 +36,26 @@ export default function CommentCard({
 
   return (
     <>
-      <Card className='mb-4'>
-        <CardContent className='pt-6'>
+      <Card
+        className={`mb-4 ${
+          comment.hidden
+            ? 'border-red-500 bg-red-50 dark:border-red-600 dark:bg-red-950/30'
+            : ''
+        }`}
+      >
+        <CardContent className='pt-6 space-y-1'>
+          {comment.hidden && (
+            <span className='text-xs font-semibold text-red-600 uppercase tracking-wider'>
+              Comentario reportado
+            </span>
+          )}
           <p className='text-sm'>{comment.text}</p>
         </CardContent>
+
         <CardFooter className='flex justify-between items-center text-xs text-muted-foreground pt-2'>
           <span>{formattedDate}</span>
+
+          {/* Action buttons */}
           <div className='flex items-center gap-2'>
             <Button
               variant='ghost'
@@ -60,20 +70,25 @@ export default function CommentCard({
               <ThumbsUp className='mr-1 h-4 w-4' />
               {comment.likes}
             </Button>
-            <Button
-              variant='ghost'
-              size='sm'
-              onClick={() => setShowConfirm(true)}
-              disabled={isPending}
-              aria-label='Reportar comentario'
-              className='text-red-500'
-            >
-              Reportar
-            </Button>
+
+            {/* Don’t show “Reportar” if it’s already hidden */}
+            {!comment.hidden && (
+              <Button
+                variant='ghost'
+                size='sm'
+                onClick={() => setShowConfirm(true)}
+                disabled={isPending}
+                aria-label='Reportar comentario'
+                className='text-red-500'
+              >
+                Reportar
+              </Button>
+            )}
           </div>
         </CardFooter>
       </Card>
 
+      {/* Confirm dialog */}
       {showConfirm && (
         <div className='fixed inset-0 z-50 bg-black/40 flex items-center justify-center'>
           <div className='bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg w-[90%] max-w-sm text-center space-y-4'>
