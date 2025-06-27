@@ -13,7 +13,7 @@ import {
   resetSubjectVotes,
 } from '@/lib/kv';
 import type { Comment } from '@/lib/types';
-import { COMMENT_MAX_LENGTH } from '@/lib/constants';
+import { COMMENT_MAX_LENGTH, COMMENT_MIN_LENGTH } from '@/lib/constants';
 import { reportSubjectComment } from '@/lib/kv';
 
 const ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60;
@@ -88,6 +88,11 @@ export async function handleAddComment(subjectId: string, formData: FormData) {
   if (commentText.length > COMMENT_MAX_LENGTH) {
     return {
       error: `Comment cannot exceed ${COMMENT_MAX_LENGTH} characters.`,
+    };
+  }
+  if (commentText.length > COMMENT_MAX_LENGTH) {
+    return {
+      error: `El comentario no puede exceder los ${COMMENT_MAX_LENGTH} caracteres.`,
     };
   }
 
