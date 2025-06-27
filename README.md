@@ -111,8 +111,7 @@ deberías cambiarlas si querés modificar los valores por defecto:
    ```
    feat(vote): permitir deshacer dislike
    ```
-4. Abrí un pull request. Asegurate de que todas las pruebas pasen antes de hacer
-   merge.
+4. Abrí un pull request.
 
 ## Licencia
 
