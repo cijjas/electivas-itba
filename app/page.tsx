@@ -16,10 +16,34 @@ import {
   MessageCircle,
   Github, // Import the GitHub icon
 } from 'lucide-react';
+import { cookies, headers } from 'next/headers';
+import { isIpBlocked, isFingerprintBlocked } from '@/lib/admin-utils';
+import { redirect } from 'next/navigation';
+import BlockCheckWrapper from '@/components/block-check-wrapper';
 
-// app/page.tsx
 
 export default async function HomePage() {
+  // FIRST: Check if user is blocked before doing ANY database operations
+  const cookieStore = await cookies();
+  const headersList = await headers();
+  
+  // Get IP from headers
+  const ip = headersList.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 
+           headersList.get('x-real-ip') ?? 
+           null;
+  
+  // Get fingerprint from cookie
+  const fingerprint = cookieStore.get('fp')?.value ?? null;
+  
+  // Check if user is blocked (early exit to avoid unnecessary DB calls)
+  if (ip && (await isIpBlocked(ip))) {
+    redirect('/blocked');
+  }
+  if (fingerprint && (await isFingerprintBlocked(fingerprint))) {
+    redirect('/blocked');
+  }
+
+  // ONLY AFTER confirming user is not blocked, fetch data
   const electivas = await getElectivas();
 
   // Fetch likes, dislikes, and comment counts for all electives in parallel
@@ -44,8 +68,9 @@ export default async function HomePage() {
   );
 
   return (
-    <div className='bg-slate-50 min-h-screen'>
-      <div className='container mx-auto px-4 py-12'>
+    <BlockCheckWrapper>
+      <div className='bg-slate-50 min-h-screen'>
+        <div className='container mx-auto px-4 py-12'>
         <header className='text-center mb-12 border-b pb-8'>
           <h1 className='text-5xl font-extrabold tracking-tight text-gray-800 flex items-center justify-center'>
             Rating Electivas ITBA
@@ -171,5 +196,6 @@ export default async function HomePage() {
         </footer>
       </div>
     </div>
+    </BlockCheckWrapper>
   );
 }

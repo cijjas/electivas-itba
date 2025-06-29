@@ -6,6 +6,9 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { cookies, headers } from 'next/headers';
+import { isIpBlocked, isFingerprintBlocked } from '@/lib/admin-utils';
+import { redirect } from 'next/navigation';
+import BlockCheckWrapper from '@/components/block-check-wrapper';
 
 interface SubjectPageProps {
   params: { subject_id: string };
@@ -14,6 +17,26 @@ interface SubjectPageProps {
 export default async function SubjectPage(props: SubjectPageProps) {
   const { subject_id } = await props.params;
   const subjectId = subject_id;
+
+  // Check if user is blocked
+  const cookieStore = await cookies();
+  const headersList = await headers();
+  
+  // Get IP from headers
+  const ip = headersList.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 
+           headersList.get('x-real-ip') ?? 
+           null;
+  
+  // Get fingerprint from cookie
+  const fingerprint = cookieStore.get('fp')?.value ?? null;
+  
+  // Check if user is blocked (early exit to avoid unnecessary DB calls)
+  if (ip && (await isIpBlocked(ip))) {
+    redirect('/blocked');
+  }
+  if (fingerprint && (await isFingerprintBlocked(fingerprint))) {
+    redirect('/blocked');
+  }
 
   const subject = await getSubjectById(subjectId);
 
@@ -37,17 +60,6 @@ export default async function SubjectPage(props: SubjectPageProps) {
   // Fetch all comments, including hidden/reported ones.
   // The client will handle filtering.
   const allComments = await getSubjectComments(subjectId);
-
-  const cookieStore = await cookies();
-  const headersList = await headers();
-  
-  // Get IP from headers
-  const ip = headersList.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 
-           headersList.get('x-real-ip') ?? 
-           null;
-  
-  // Get fingerprint from cookie
-  const fingerprint = cookieStore.get('fp')?.value ?? null;
   
   // Check vote status from all sources
   const cookieVote = cookieStore.get(`voted_subject_${subjectId}`)?.value as 'like' | 'dislike' | undefined;
@@ -64,23 +76,25 @@ export default async function SubjectPage(props: SubjectPageProps) {
   }));
 
   return (
-    <div className='container mx-auto p-4'>
-      <Link href='/' legacyBehavior>
-        <Button
-          variant='ghost'
-          className='mb-6 text-muted-foreground hover:bg-accent hover:text-accent-foreground'
-        >
-          <ArrowLeft className='mr-2 h-4 w-4' /> Volver a Electivas
-        </Button>
-      </Link>
-      <SubjectDetailsClient
-        subject={subject}
-        initialLikes={likes}
-        initialDislikes={dislikes}
-        initialComments={allComments}
-        userVoteStatus={userVote}
-        likedCommentsStatus={likedComments}
-      />
-    </div>
+    <BlockCheckWrapper>
+      <div className='container mx-auto p-4'>
+        <Link href='/' legacyBehavior>
+          <Button
+            variant='ghost'
+            className='mb-6 text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+          >
+            <ArrowLeft className='mr-2 h-4 w-4' /> Volver a Electivas
+          </Button>
+        </Link>
+        <SubjectDetailsClient
+          subject={subject}
+          initialLikes={likes}
+          initialDislikes={dislikes}
+          initialComments={allComments}
+          userVoteStatus={userVote}
+          likedCommentsStatus={likedComments}
+        />
+      </div>
+    </BlockCheckWrapper>
   );
 }

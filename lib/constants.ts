@@ -16,3 +16,6 @@ export const COMMENTS_PER_SUBJECT_LIMIT = 2;
 
 /** Maximum comments per subject per IP (higher limit for shared networks like universities). */
 export const COMMENTS_PER_SUBJECT_IP_LIMIT = 20;
+
+/** Enable tracking of IP and fingerprint for comments (for abuse investigation) */
+export const ENABLE_COMMENT_TRACKING = true;

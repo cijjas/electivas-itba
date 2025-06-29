@@ -23,8 +23,10 @@ import {
   bumpFpCommentCountForSubject,
 } from '@/lib/kv';
 import type { Comment } from '@/lib/types';
-import { COMMENT_MAX_LENGTH, COMMENT_MIN_LENGTH, COMMENTS_PER_SUBJECT_LIMIT, COMMENTS_PER_SUBJECT_IP_LIMIT } from '@/lib/constants';
+import { COMMENT_MAX_LENGTH, COMMENT_MIN_LENGTH, COMMENTS_PER_SUBJECT_LIMIT, COMMENTS_PER_SUBJECT_IP_LIMIT, ENABLE_COMMENT_TRACKING } from '@/lib/constants';
+import { isIpBlocked, isFingerprintBlocked } from '@/lib/admin-utils';
 import { reportSubjectComment } from '@/lib/kv';
+import { redirect } from 'next/navigation';
 
 const ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60;
 
@@ -39,6 +41,15 @@ export async function handleVote(
   meta: { ip?: string | null; fp?: string | null } = {},
 ) {
   const { ip, fp } = meta;
+  
+  // Check if user is blocked
+  if (ip && (await isIpBlocked(ip))) {
+    redirect('/blocked');
+  }
+  if (fp && (await isFingerprintBlocked(fp))) {
+    redirect('/blocked');
+  }
+  
   const cookieStore = await cookies();
   const voteCookieName = `voted_subject_${subjectId}`;
 
@@ -120,6 +131,14 @@ export async function handleAddComment(
 ) {
   const { ip, fp } = meta;
 
+  // Check if user is blocked
+  if (ip && (await isIpBlocked(ip))) {
+    redirect('/blocked');
+  }
+  if (fp && (await isFingerprintBlocked(fp))) {
+    redirect('/blocked');
+  }
+
   // Rate limiting: Primary check is fingerprint (device-level protection)
   // This allows multiple students on same university WiFi to comment
   if (fp && (await fpCommentCountForSubject(fp, subjectId)) >= COMMENTS_PER_SUBJECT_LIMIT) {
@@ -154,6 +173,11 @@ export async function handleAddComment(
     text: commentText.trim(),
     timestamp: Date.now(),
     likes: 0,
+    // Conditionally add tracking data for abuse investigation
+    ...(ENABLE_COMMENT_TRACKING && {
+      ip: ip || undefined,
+      fingerprint: fp || undefined,
+    }),
   };
 
   await addSubjectComment(subjectId, newComment);

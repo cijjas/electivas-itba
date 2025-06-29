@@ -45,4 +45,7 @@ export interface Comment {
   timestamp: number; // Unix timestamp of when the comment was created
   likes: number; // Number of likes for the comment
   hidden?: boolean;
+  // Temporary tracking fields for abuse investigation
+  ip?: string; // Source IP address (only when ENABLE_COMMENT_TRACKING is true)
+  fingerprint?: string; // Browser fingerprint (only when ENABLE_COMMENT_TRACKING is true)
 }
