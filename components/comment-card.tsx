@@ -5,9 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { ThumbsUp, ShieldAlert } from 'lucide-react';
 import { useTransition, useState } from 'react';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog';
 
 interface CommentCardProps {
-  comment: Comment & { userLiked?: boolean };
+  comment: Comment & { userLiked?: boolean; userReported?: boolean };
   onLikeComment: (commentId: string) => Promise<void>;
   onReportComment: (id: string) => Promise<void>;
   isReported?: boolean; // New prop to indicate reported status
@@ -71,8 +72,8 @@ export default function CommentCard({
               {comment.likes}
             </Button>
 
-            {/* Only show the report button for non-reported comments */}
-            {!isReported ? (
+            {/* Show report button or "Reportado" status */}
+            {!comment.userReported ? (
               <Button
                 variant='ghost'
                 size='sm'
@@ -95,22 +96,21 @@ export default function CommentCard({
 
       {/* Confirmation Modal - remains unchanged */}
       {showConfirm && (
-        <div className='fixed inset-0 z-50 bg-black/40 flex items-center justify-center'>
-          <div className='bg-background p-6 rounded-lg shadow-lg w-[90%] max-w-sm text-center space-y-4 border'>
-            <p className='text-sm'>
-              ¿Estás seguro de que querés reportar este comentario? Un
-              comentario reportado será ocultado y revisado.
-            </p>
-            <div className='flex justify-center gap-4'>
-              <Button variant='ghost' onClick={() => setShowConfirm(false)}>
-                Cancelar
-              </Button>
-              <Button variant='destructive' onClick={confirmReport}>
-                Confirmar Reporte
-              </Button>
-            </div>
-          </div>
-        </div>
+       <Dialog open={showConfirm} onOpenChange={setShowConfirm}>
+       <DialogContent>
+       <DialogHeader>
+        <DialogTitle>Confirmar reporte</DialogTitle>
+      </DialogHeader>
+         <DialogFooter className="flex justify-center gap-4">
+           <Button variant="ghost" onClick={() => setShowConfirm(false)}>
+             Cancelar
+           </Button>
+           <Button variant="destructive" onClick={confirmReport}>
+             Confirmar
+           </Button>
+         </DialogFooter>
+       </DialogContent>
+     </Dialog>
       )}
     </>
   );

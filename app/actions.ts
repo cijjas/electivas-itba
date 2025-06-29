@@ -21,6 +21,10 @@ import {
   clearFpVote,
   fpCommentCountForSubject,
   bumpFpCommentCountForSubject,
+  hasIpReported,
+  rememberIpReport,
+  hasFpReported,
+  rememberFpReport,
 } from '@/lib/kv';
 import type { Comment } from '@/lib/types';
 import { COMMENT_MAX_LENGTH, COMMENT_MIN_LENGTH, COMMENTS_PER_SUBJECT_LIMIT, COMMENTS_PER_SUBJECT_IP_LIMIT, ENABLE_COMMENT_TRACKING } from '@/lib/constants';
@@ -220,25 +224,44 @@ export async function resetVotes(subjectId: string) {
   return { success: true, message: 'Votos reiniciados.' };
 }
 
-/** User reports a comment as spam/abuse. Cookie prevents duplicates. */
-export async function reportComment(subjectId: string, commentId: string) {
-  const cookieStore = await cookies();
-  const reportCookie = `reported_comment_${commentId}`;
+/** User reports a comment as spam/abuse. IP/Fingerprint prevents duplicates. */
+export async function reportComment(
+  subjectId: string, 
+  commentId: string,
+  meta: { ip?: string | null; fp?: string | null } = {}
+) {
+  const { ip, fp } = meta;
 
-  // Disallow multiple reports from the same browser
-  if (cookieStore.get(reportCookie)) {
+  // Check if user is blocked
+  if (ip && (await isIpBlocked(ip))) {
+    redirect('/blocked');
+  }
+  if (fp && (await isFingerprintBlocked(fp))) {
+    redirect('/blocked');
+  }
+
+  // Check if user has already reported this comment
+  // Primary check: fingerprint (device-level)
+  if (fp && (await hasFpReported(fp, commentId))) {
     return {
       success: false,
-      message: 'Ya reportaste este comentario una vez.',
+      message: 'Ya reportaste este comentario.',
+    };
+  }
+
+  // Fallback check: IP (for users without fingerprint)
+  if (!fp && ip && (await hasIpReported(ip, commentId))) {
+    return {
+      success: false,
+      message: 'Ya reportaste este comentario.',
     };
   }
 
   const hidden = await reportSubjectComment(subjectId, commentId);
 
-  cookieStore.set(reportCookie, 'true', {
-    maxAge: ONE_YEAR_IN_SECONDS,
-    path: '/',
-  });
+  // Remember the report in tracking systems
+  if (fp) await rememberFpReport(fp, commentId);
+  if (ip) await rememberIpReport(ip, commentId);
 
   // refresh caches so UI picks up hidden flag or report counts
   revalidatePath(`/electivas/${subjectId}`);
@@ -247,7 +270,7 @@ export async function reportComment(subjectId: string, commentId: string) {
     success: true,
     hidden,
     message: hidden
-      ? 'El comentario fue eliminado despues de varios reports.'
+      ? 'El comentario fue eliminado después de varios reportes.'
       : 'Reportado, gracias.',
   };
 }

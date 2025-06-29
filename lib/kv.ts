@@ -218,3 +218,27 @@ export async function fpCommentCountForSubject(fp: string, subjectId: string): P
 export async function bumpFpCommentCountForSubject(fp: string, subjectId: string): Promise<number> {
   return kv.incr(`fp-comment-count:${fp}:${subjectId}`);
 }
+
+// -------------------------------
+// Report Tracking (IP and Fingerprint)
+// -------------------------------
+
+// Check if IP has already reported a comment
+export async function hasIpReported(ip: string, commentId: string): Promise<boolean> {
+  return (await kv.get<boolean>(`ip-report:${ip}:${commentId}`)) || false;
+}
+
+// Remember that IP has reported a comment
+export async function rememberIpReport(ip: string, commentId: string): Promise<void> {
+  await kv.set(`ip-report:${ip}:${commentId}`, true);
+}
+
+// Check if fingerprint has already reported a comment
+export async function hasFpReported(fp: string, commentId: string): Promise<boolean> {
+  return (await kv.get<boolean>(`fp-report:${fp}:${commentId}`)) || false;
+}
+
+// Remember that fingerprint has reported a comment
+export async function rememberFpReport(fp: string, commentId: string): Promise<void> {
+  await kv.set(`fp-report:${fp}:${commentId}`, true);
+}

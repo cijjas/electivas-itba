@@ -28,7 +28,7 @@ import { ensureClientIp, getClientIp, getFingerprint } from '@/lib/client-utils'
 type OptimisticAction =
   | {
       action: 'add';
-      payload: Comment & { userLiked: boolean };
+      payload: Comment & { userLiked: boolean; userReported: boolean };
     }
   | {
       action: 'like';
@@ -41,6 +41,10 @@ type OptimisticAction =
   | {
       action: 'hide';
       payload: { commentId: string };
+    }
+  | {
+      action: 'report';
+      payload: { commentId: string };
     };
 
 // ---------------------------------------------
@@ -52,6 +56,11 @@ interface LikedCommentStatus {
   liked: boolean;
 }
 
+interface ReportedCommentStatus {
+  id: string;
+  reported: boolean;
+}
+
 interface SubjectDetailsClientProps {
   subject: Subject;
   initialLikes: number;
@@ -59,6 +68,7 @@ interface SubjectDetailsClientProps {
   initialComments: Comment[];
   userVoteStatus: VoteStatus;
   likedCommentsStatus: LikedCommentStatus[];
+  reportedCommentsStatus: ReportedCommentStatus[];
 }
 
 // ---------------------------------------------
@@ -71,6 +81,7 @@ export default function SubjectDetailsClient({
   initialComments,
   userVoteStatus,
   likedCommentsStatus,
+  reportedCommentsStatus,
 }: SubjectDetailsClientProps) {
   const [isPending, startTransition] = useTransition();
   const formRef = useRef<HTMLFormElement>(null);
@@ -94,6 +105,7 @@ export default function SubjectDetailsClient({
     initialComments.map(c => ({
       ...c,
       userLiked: likedCommentsStatus.find(lc => lc.id === c.id)?.liked || false,
+      userReported: reportedCommentsStatus.find(rc => rc.id === c.id)?.reported || false,
     })),
     (state, { action, payload }: OptimisticAction) => {
       switch (action) {
@@ -112,6 +124,10 @@ export default function SubjectDetailsClient({
         case 'hide':
           return state.map(c =>
             c.id === payload.commentId ? { ...c, hidden: true } : c,
+          );
+        case 'report':
+          return state.map(c =>
+            c.id === payload.commentId ? { ...c, userReported: true } : c,
           );
         default:
           return state;
@@ -134,10 +150,23 @@ export default function SubjectDetailsClient({
 
   const onReportComment = async (commentId: string) => {
     startTransition(async () => {
-      // Optimistically move the comment to the reported section
-      setOptimisticComments({ action: 'hide', payload: { commentId } });
-      const result = await reportComment(subject.subject_id, commentId);
-      toast.success(result.message);
+      // Optimistically mark as reported
+      setOptimisticComments({ action: 'report', payload: { commentId } });
+      
+      const ip = getClientIp();
+      const result = await reportComment(subject.subject_id, commentId, { ip, fp });
+      
+      if (result.success) {
+        toast.success(result.message);
+        // If the comment was hidden, update it optimistically
+        if (result.hidden) {
+          setOptimisticComments({ action: 'hide', payload: { commentId } });
+        }
+      } else {
+        toast.error(result.message);
+        // Revert the optimistic report status on failure
+        setOptimisticComments({ action: 'report', payload: { commentId } }); // This will toggle it back
+      }
     });
   };
 
@@ -199,13 +228,14 @@ export default function SubjectDetailsClient({
     if (!commentText) return toast.error('El comentario no puede estar vacío.');
 
     startTransition(async () => {
-      const newCommentOptimistic: Comment & { userLiked: boolean } = {
+      const newCommentOptimistic: Comment & { userLiked: boolean; userReported: boolean } = {
         id: `optimistic_${Date.now()}`,
         subjectId: subject.subject_id,
         text: commentText,
         timestamp: Date.now(),
         likes: 0,
         userLiked: false,
+        userReported: false,
         hidden: false,
       };
 
@@ -358,7 +388,7 @@ export default function SubjectDetailsClient({
                     comment={comment}
                     onLikeComment={onLikeComment}
                     onReportComment={onReportComment}
-                    isReported={false}
+                    isReported={comment.userReported}
                   />
                 ))
               ) : (
