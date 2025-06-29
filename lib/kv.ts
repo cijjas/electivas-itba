@@ -144,3 +144,77 @@ export async function getVisibleCommentCount(
     (await kv.get<number>(`subject:${subjectId}:visibleCommentCount`)) || 0
   );
 }
+
+// -------------------------------
+// IP and Fingerprint Tracking
+// -------------------------------
+
+// IP vote tracking
+export async function hasIpVoted(ip: string, subjectId: string): Promise<string | null> {
+  return kv.get<string>(`ip-vote:${ip}:${subjectId}`);
+}
+
+export async function rememberIpVote(
+  ip: string,
+  subjectId: string,
+  kind: 'like' | 'dislike',
+): Promise<void> {
+  await kv.set(`ip-vote:${ip}:${subjectId}`, kind);
+  await kv.incr(`ip-stats:${ip}:count`);
+  await kv.set(`ip-last-seen:${ip}`, Date.now());
+}
+
+export async function clearIpVote(ip: string, subjectId: string): Promise<void> {
+  await kv.set(`ip-vote:${ip}:${subjectId}`, null);
+}
+
+export async function ipCommentCount(ip: string): Promise<number> {
+  return (await kv.get<number>(`ip-comment-count:${ip}`)) ?? 0;
+}
+
+export async function bumpIpCommentCount(ip: string): Promise<number> {
+  return kv.incr(`ip-comment-count:${ip}`);
+}
+
+export async function ipCommentCountForSubject(ip: string, subjectId: string): Promise<number> {
+  return (await kv.get<number>(`ip-comment-count:${ip}:${subjectId}`)) ?? 0;
+}
+
+export async function bumpIpCommentCountForSubject(ip: string, subjectId: string): Promise<number> {
+  return kv.incr(`ip-comment-count:${ip}:${subjectId}`);
+}
+
+// Fingerprint vote tracking
+export async function hasFpVoted(fp: string, subjectId: string): Promise<string | null> {
+  return kv.get<string>(`fp-vote:${fp}:${subjectId}`);
+}
+
+export async function rememberFpVote(
+  fp: string,
+  subjectId: string,
+  kind: 'like' | 'dislike',
+): Promise<void> {
+  await kv.set(`fp-vote:${fp}:${subjectId}`, kind);
+  await kv.incr(`fp-stats:${fp}:count`);
+  await kv.set(`fp-last-seen:${fp}`, Date.now());
+}
+
+export async function clearFpVote(fp: string, subjectId: string): Promise<void> {
+  await kv.set(`fp-vote:${fp}:${subjectId}`, null);
+}
+
+export async function fpCommentCount(fp: string): Promise<number> {
+  return (await kv.get<number>(`fp-comment-count:${fp}`)) ?? 0;
+}
+
+export async function bumpFpCommentCount(fp: string): Promise<number> {
+  return kv.incr(`fp-comment-count:${fp}`);
+}
+
+export async function fpCommentCountForSubject(fp: string, subjectId: string): Promise<number> {
+  return (await kv.get<number>(`fp-comment-count:${fp}:${subjectId}`)) ?? 0;
+}
+
+export async function bumpFpCommentCountForSubject(fp: string, subjectId: string): Promise<number> {
+  return kv.incr(`fp-comment-count:${fp}:${subjectId}`);
+}

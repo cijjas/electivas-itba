@@ -1,6 +1,6 @@
 'use client';
 
-import { useTransition, useOptimistic, useRef, useState } from 'react';
+import { useTransition, useOptimistic, useRef, useState, useEffect } from 'react';
 import type { Subject, Comment } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -20,7 +20,9 @@ import {
 } from '@/app/actions';
 import CommentCard from './comment-card';
 import { toast } from 'sonner';
-import { COMMENT_MAX_LENGTH, COMMENT_MIN_LENGTH } from '@/lib/constants';
+import { COMMENT_MAX_LENGTH, COMMENT_MIN_LENGTH, COMMENTS_PER_SUBJECT_LIMIT } from '@/lib/constants';
+import { useFingerprint } from '@/hooks/useFingerprint';
+import { ensureClientIp, getClientIp, getFingerprint } from '@/lib/client-utils';
 
 /** Discriminated‐union for the optimistic reducer */
 type OptimisticAction =
@@ -73,6 +75,13 @@ export default function SubjectDetailsClient({
   const [isPending, startTransition] = useTransition();
   const formRef = useRef<HTMLFormElement>(null);
   const [activeTab, setActiveTab] = useState<'visible' | 'reported'>('visible');
+  
+  // IP and Fingerprint tracking
+  const fp = useFingerprint();
+  
+  useEffect(() => {
+    ensureClientIp();
+  }, []);
 
   // -------------------------------------------
   // Optimistic State
@@ -153,8 +162,35 @@ export default function SubjectDetailsClient({
             setOptimisticLikes(p => Math.max(0, p - 1));
         }
       }
-      const result = await handleVote(subject.subject_id, voteType);
-      toast.success(result.message);
+      
+      const ip = getClientIp();
+      const result = await handleVote(subject.subject_id, voteType, { ip, fp });
+      
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(result.message);
+        // Revert optimistic update on failure
+        setOptimisticVote(previousVote);
+        if (previousVote === voteType) {
+          // User was undoing, so we need to restore the count
+          if (voteType === 'like') setOptimisticLikes(p => p + 1);
+          else setOptimisticDislikes(p => p + 1);
+        } else if (previousVote) {
+          // User was switching, revert both changes
+          if (voteType === 'like') {
+            setOptimisticLikes(p => p - 1);
+            setOptimisticDislikes(p => p + 1);
+          } else {
+            setOptimisticDislikes(p => p - 1);
+            setOptimisticLikes(p => p + 1);
+          }
+        } else {
+          // User was voting for first time, revert the increment
+          if (voteType === 'like') setOptimisticLikes(p => p - 1);
+          else setOptimisticDislikes(p => p - 1);
+        }
+      }
     });
   };
 
@@ -176,12 +212,19 @@ export default function SubjectDetailsClient({
       formRef.current?.reset();
       setOptimisticComments({ action: 'add', payload: newCommentOptimistic });
 
-      const result = await handleAddComment(subject.subject_id, formData);
+      const ip = getClientIp();
+      const result = await handleAddComment(subject.subject_id, formData, { ip, fp });
       if (result.success) {
         toast.success(result.message);
       } else {
         toast.error(result.error);
-        // TODO: Revert optimistic update on failure
+        // Revert optimistic update on failure - we'll need to reload the page or implement a proper revert action
+        // For now, we'll let the user know and they can refresh if needed
+        // Restore the form content
+        if (formRef.current) {
+          const textarea = formRef.current.querySelector('textarea[name="commentText"]') as HTMLTextAreaElement;
+          if (textarea) textarea.value = commentText;
+        }
       }
     });
   };
@@ -199,8 +242,7 @@ export default function SubjectDetailsClient({
         payload: { commentId, newLikeCount, newUserLiked },
       });
 
-      const result = await handleLikeComment(subject.subject_id, commentId);
-      toast.success(result.message);
+      await handleLikeComment(subject.subject_id, commentId);
     });
   };
 
@@ -268,7 +310,10 @@ export default function SubjectDetailsClient({
             disabled={isPending}
             className='focus-visible:ring-1 focus-visible:ring-ring'
           />
-          <div className='flex justify-end'>
+          <div className='flex justify-between items-center'>
+            <p className='text-xs text-muted-foreground'>
+              Solo podés comentar {COMMENTS_PER_SUBJECT_LIMIT} veces por materia
+            </p>
             <Button type='submit' disabled={isPending} className='gap-1'>
               <Send className='h-4 w-4' /> Enviar
             </Button>

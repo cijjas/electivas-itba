@@ -11,9 +11,19 @@ import {
   likeSubjectComment,
   unlikeSubjectComment,
   resetSubjectVotes,
+  hasIpVoted,
+  rememberIpVote,
+  clearIpVote,
+  ipCommentCountForSubject,
+  bumpIpCommentCountForSubject,
+  hasFpVoted,
+  rememberFpVote,
+  clearFpVote,
+  fpCommentCountForSubject,
+  bumpFpCommentCountForSubject,
 } from '@/lib/kv';
 import type { Comment } from '@/lib/types';
-import { COMMENT_MAX_LENGTH, COMMENT_MIN_LENGTH } from '@/lib/constants';
+import { COMMENT_MAX_LENGTH, COMMENT_MIN_LENGTH, COMMENTS_PER_SUBJECT_LIMIT, COMMENTS_PER_SUBJECT_IP_LIMIT } from '@/lib/constants';
 import { reportSubjectComment } from '@/lib/kv';
 
 const ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60;
@@ -26,21 +36,36 @@ const ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60;
 export async function handleVote(
   subjectId: string,
   voteType: 'like' | 'dislike',
+  meta: { ip?: string | null; fp?: string | null } = {},
 ) {
+  const { ip, fp } = meta;
   const cookieStore = await cookies();
   const voteCookieName = `voted_subject_${subjectId}`;
-  const existingVote = cookieStore.get(voteCookieName)?.value;
+
+  // Get current vote status from all sources
+  const cookieVote = cookieStore.get(voteCookieName)?.value as 'like' | 'dislike' | undefined;
+  const ipVote = ip ? await hasIpVoted(ip, subjectId) : null;
+  const fpVote = fp ? await hasFpVoted(fp, subjectId) : null;
+  
+  // Primary protection: fingerprint (device-level)
+  // Secondary protection: cookie (session-level)
+  // IP is only used for tracking, not blocking (shared network friendly)
+  const currentVote = fpVote || cookieVote || undefined;
 
   let message = '';
 
-  if (existingVote === voteType) {
+  if (currentVote === voteType) {
     // User is undoing their vote
     if (voteType === 'like') await decrementSubjectLikes(subjectId);
     else await decrementSubjectDislikes(subjectId);
 
+    // Clear vote from all sources
     cookieStore.delete(voteCookieName);
+    if (ip) await clearIpVote(ip, subjectId);
+    if (fp) await clearFpVote(fp, subjectId);
+    
     message = 'Voto eliminado.';
-  } else if (existingVote) {
+  } else if (currentVote) {
     // User is switching their vote from like to dislike or vice versa
     if (voteType === 'like') {
       await incrementSubjectLikes(subjectId);
@@ -49,10 +74,15 @@ export async function handleVote(
       await decrementSubjectLikes(subjectId);
       await incrementSubjectDislikes(subjectId);
     }
+    
+    // Update vote in all sources
     cookieStore.set(voteCookieName, voteType, {
       maxAge: ONE_YEAR_IN_SECONDS,
       path: '/',
     });
+    if (ip) await rememberIpVote(ip, subjectId, voteType);
+    if (fp) await rememberFpVote(fp, subjectId, voteType);
+    
     message = `Voto cambiado a '${
       voteType === 'like' ? 'Me gusta' : 'No me gusta'
     }'.`;
@@ -61,10 +91,14 @@ export async function handleVote(
     if (voteType === 'like') await incrementSubjectLikes(subjectId);
     else await incrementSubjectDislikes(subjectId);
 
+    // Set vote in all sources
     cookieStore.set(voteCookieName, voteType, {
       maxAge: ONE_YEAR_IN_SECONDS,
       path: '/',
     });
+    if (ip) await rememberIpVote(ip, subjectId, voteType);
+    if (fp) await rememberFpVote(fp, subjectId, voteType);
+    
     message = '¡Gracias por tu voto!';
   }
 
@@ -77,8 +111,26 @@ export async function handleVote(
 /**
  * Handles adding a comment to a subject.
  * Validates that the comment is not empty and adds it to storage.
+ * Now includes IP and fingerprint rate limiting.
  */
-export async function handleAddComment(subjectId: string, formData: FormData) {
+export async function handleAddComment(
+  subjectId: string, 
+  formData: FormData,
+  meta: { ip?: string | null; fp?: string | null } = {},
+) {
+  const { ip, fp } = meta;
+
+  // Rate limiting: Primary check is fingerprint (device-level protection)
+  // This allows multiple students on same university WiFi to comment
+  if (fp && (await fpCommentCountForSubject(fp, subjectId)) >= COMMENTS_PER_SUBJECT_LIMIT) {
+    return { error: 'Máximo alcanzado.' };
+  }
+  
+  // Fallback: If no fingerprint available, check IP with higher limit (shared networks)
+  if (!fp && ip && (await ipCommentCountForSubject(ip, subjectId)) >= COMMENTS_PER_SUBJECT_IP_LIMIT) {
+    return { error: 'Máximo alcanzado.' };
+  }
+
   const commentText = (formData.get('commentText') as string)?.trim() ?? '';
 
   if (commentText.length === 0) {
@@ -87,12 +139,12 @@ export async function handleAddComment(subjectId: string, formData: FormData) {
 
   if (commentText.length > COMMENT_MAX_LENGTH) {
     return {
-      error: `Comment cannot exceed ${COMMENT_MAX_LENGTH} characters.`,
+      error: `El comentario no puede exceder los ${COMMENT_MAX_LENGTH} caracteres.`,
     };
   }
-  if (commentText.length > COMMENT_MAX_LENGTH) {
+  if (commentText.length < COMMENT_MIN_LENGTH) {
     return {
-      error: `El comentario no puede exceder los ${COMMENT_MAX_LENGTH} caracteres.`,
+      error: `El comentario debe tener al menos ${COMMENT_MIN_LENGTH} caracteres.`,
     };
   }
 
@@ -105,6 +157,14 @@ export async function handleAddComment(subjectId: string, formData: FormData) {
   };
 
   await addSubjectComment(subjectId, newComment);
+  
+  // Update comment counts for rate limiting
+  // Always track fingerprint if available (primary protection)
+  if (fp) await bumpFpCommentCountForSubject(fp, subjectId);
+  
+  // Track IP for analytics/fallback, but don't use for primary blocking
+  if (ip) await bumpIpCommentCountForSubject(ip, subjectId);
+  
   revalidatePath(`/electivas/${subjectId}`);
   return { success: true, message: 'Comentario añadido.' };
 }
@@ -118,7 +178,7 @@ export async function handleLikeComment(subjectId: string, commentId: string) {
     await unlikeSubjectComment(subjectId, commentId);
     cookieStore.delete(voteCookieName);
     revalidatePath(`/electivas/${subjectId}`);
-    return { success: true, message: 'Voto eliminado.' };
+    return { success: true };
   } else {
     // Add like
     await likeSubjectComment(subjectId, commentId);
@@ -127,7 +187,7 @@ export async function handleLikeComment(subjectId: string, commentId: string) {
       path: '/',
     });
     revalidatePath(`/electivas/${subjectId}`);
-    return { success: true, message: '¡Gracias por tu voto!' };
+    return { success: true };
   }
 }
 
@@ -167,3 +227,4 @@ export async function reportComment(subjectId: string, commentId: string) {
       : 'Reportado, gracias.',
   };
 }
+

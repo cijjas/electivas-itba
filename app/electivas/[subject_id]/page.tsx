@@ -1,11 +1,11 @@
 // app/electivas/[subject_id]/page.tsx
 import { getSubjectById } from '@/lib/data';
-import { getSubjectLikes, getSubjectComments } from '@/lib/kv';
+import { getSubjectLikes, getSubjectComments, hasIpVoted, hasFpVoted } from '@/lib/kv';
 import SubjectDetailsClient from '@/components/subject-details-client';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 
 interface SubjectPageProps {
   params: { subject_id: string };
@@ -39,10 +39,24 @@ export default async function SubjectPage(props: SubjectPageProps) {
   const allComments = await getSubjectComments(subjectId);
 
   const cookieStore = await cookies();
-  const userVote = cookieStore.get(`voted_subject_${subjectId}`)?.value as
-    | 'like'
-    | 'dislike'
-    | undefined;
+  const headersList = await headers();
+  
+  // Get IP from headers
+  const ip = headersList.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 
+           headersList.get('x-real-ip') ?? 
+           null;
+  
+  // Get fingerprint from cookie
+  const fingerprint = cookieStore.get('fp')?.value ?? null;
+  
+  // Check vote status from all sources
+  const cookieVote = cookieStore.get(`voted_subject_${subjectId}`)?.value as 'like' | 'dislike' | undefined;
+  const ipVote = ip ? await hasIpVoted(ip, subjectId) : null;
+  const fpVote = fingerprint ? await hasFpVoted(fingerprint, subjectId) : null;
+  
+  // Determine final vote status: prioritize fingerprint, then cookie
+  // IP is tracked but doesn't determine UI state (shared network friendly)
+  const userVote = (fpVote || cookieVote || undefined) as 'like' | 'dislike' | undefined;
 
   const likedComments = allComments.map(c => ({
     id: c.id,
